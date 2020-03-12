@@ -1,0 +1,16 @@
+FROM python:3.7-buster
+
+# Main application setup
+WORKDIR /application
+
+ARG BASE_DIR
+
+COPY ${BASE_DIR}/requirements.txt .
+
+RUN pip3 install -r requirements.txt
+
+COPY ${BASE_DIR} .
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
+
+CMD ["uwsgi"]

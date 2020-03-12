@@ -1,0 +1,50 @@
+version: "2.4"
+
+services:
+  web:
+    image: dl-web
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+      args:
+        BASE_DIR: ./web
+    environment:
+      UWSGI_PROCESSES: 1
+      UWSGI_THREADS: 2
+      UWSGI_HARAKIRI: 60
+      UWSGI_MAX_REQUESTS: 100
+      DATABASE_URL: mongodb://db
+    volumes:
+      - "sockets:/tmp/sockets"
+      - "./web:/application"
+    links:
+      - db
+    depends_on:
+      - db
+
+  nginx:
+    image: dl-nginx
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - "sockets:/tmp/sockets"
+      - "./gulp:/var/www"
+
+  gulp:
+    image: dl-gulp
+    build: ./gulp
+    volumes:
+      - "./gulp:/app"
+
+  db:
+    image: mongo:latest
+    container_name: "dl-mongodb"
+    volumes:
+      - $DATABASE_PATH:/data/db
+
+volumes:
+  sockets:
+  cuda-cache:
