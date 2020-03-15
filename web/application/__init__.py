@@ -3,8 +3,10 @@ import os
 from flask import Flask, redirect, url_for
 from flask_login import LoginManager, UserMixin
 
+
 def redirect_to_login():
     return redirect(url_for('auth.login'))
+
 
 
 def create_app(config=None):
@@ -30,9 +32,18 @@ def create_app(config=None):
     def default():
         return redirect('/login')
 
+    @login_manager.user_loader
+    def user_loader(login):
+        # if get_db().get_admins_password(login) is None:
+        #     return
+        user = UserMixin()
+        user.id = login
+        return user
+
     # Register all blueprints to the app
-    from application.views import auth
+    from application.views import auth, download
 
     app.register_blueprint(auth.bp)
+    app.register_blueprint(download.bp)
 
     return app
