@@ -6,6 +6,7 @@ from flask import (
     render_template,
 )
 
+bp = Blueprint('download', __name__)
 
 @bp.route('/download', methods=['GET', 'POST'])
 def download():
