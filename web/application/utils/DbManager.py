@@ -11,7 +11,7 @@ class Manager(object):
                                 salt, 100000)
         pwdhash = binascii.hexlify(pwdhash)
         return (salt + pwdhash).decode('ascii')
-
+    #
     # insert user's login and password
     def insert_user(self,login,password):
         hashed_password=self.hash_password(password)
