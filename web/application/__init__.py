@@ -3,10 +3,11 @@ import os
 from flask import Flask, redirect, url_for
 from flask_login import LoginManager, UserMixin
 
+from application.utils import DbManager
+
 
 def redirect_to_login():
     return redirect(url_for('auth.login'))
-
 
 
 def create_app(config=None):
@@ -34,8 +35,9 @@ def create_app(config=None):
 
     @login_manager.user_loader
     def user_loader(login):
-        # if get_db().get_admins_password(login) is None:
-        #     return
+        db_manager = DbManager.Manager()
+        if db_manager.get_user(login) is None:
+            return
         user = UserMixin()
         user.id = login
         return user
