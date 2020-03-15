@@ -8,7 +8,6 @@ from flask import (
 
 from application.utils import DbManager
 
-
 from flask_login import (
     UserMixin,
     login_required,
@@ -17,8 +16,14 @@ from flask_login import (
     logout_user,
 )
 
-
 bp = Blueprint('auth', __name__)
+
+
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -32,6 +37,7 @@ def login():
         return render_template('login.html')
 
     login = request.form['login']
+    print(request.form['login'], request.form['password'])
     # user_password = db_manager.get_admins_password(login)
     #
     # if user_password is None:
@@ -53,4 +59,3 @@ def login():
     return render_template(
         'login.html',
     )
-

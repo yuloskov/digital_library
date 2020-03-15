@@ -41,6 +41,9 @@ class Manager(object):
     # check validity for given login and password
     def check_validity(self, login, password):
         user = self.get_user(login)
-        stored_password = user["password"]
-        return self.verify_password(stored_password=stored_password,
-                                    provided_password=password)
+        if user:
+            stored_password = user["password"]
+            return self.verify_password(stored_password=stored_password,
+                                        provided_password=password)
+        else:
+            return False
