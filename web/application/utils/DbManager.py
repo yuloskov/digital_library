@@ -47,3 +47,4 @@ class Manager(object):
                                         provided_password=password)
         else:
             return False
+

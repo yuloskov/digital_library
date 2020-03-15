@@ -37,7 +37,7 @@ def login():
         return render_template('login.html')
 
     login = request.form['login']
-    print(request.form['login'], request.form['password'])
+
     # user_password = db_manager.get_admins_password(login)
     #
     # if user_password is None:
