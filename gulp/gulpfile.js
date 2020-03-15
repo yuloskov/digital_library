@@ -29,8 +29,14 @@ function modules() {
     ])
     .pipe(gulp.dest('./vendor/jquery'));
 
+  var bootstrap = gulp.src([
+    './node_modules/bootstrap/*',
+    './node_modules/bootstrap/*/*',
+    './node_modules/bootstrap/*/*/*'
+  ])
+  .pipe(gulp.dest('./vendor/bootstrap'));
 
-  return merge(jquery, jqueryEasing);
+  return merge(jquery, jqueryEasing,bootstrap);
 }
 
 // CSS task

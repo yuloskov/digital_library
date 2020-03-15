@@ -1,3 +1,39 @@
-<html>
-<p>Hello</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <script src="/static/js/login.min.js"></script>
+    <link rel="stylesheet" href="/static/css/login.min.css">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookharbor Login</title>
+</head>
+<body>
+    <div class="login">
+        <div class="login__desc">
+            <h1 class="login__desc_text">Login</h1>
+            <div class="login__desc_line"></div>
+        </div>
+        <form class="login__controls" id="login_form">
+            <div class="login__controls_username">
+                <p class="login__controls_username_text">Username: </p>
+                <input type="text" name="login" calss="login__controls_username_input" id="username_input" required/>
+            </div>
+            <div class="login__controls_password">
+                <p class="login__controls_password_text">Password: </p>
+                <input type="password" name="password" class="login__controls_password_input" id="password_input" required/>
+            </div>
+            <div class="login__controls_buttons">
+                <div class="login__controls_buttons_spacer"></div>
+                <input id="login_button" type="submit" value="Login" class="login__controls_buttons_btn">
+            </div>
+        </form>
+    </div>
+    <div id="hider"></div>
+</body>
 </html>
