@@ -29,20 +29,13 @@ function modules() {
     ])
     .pipe(gulp.dest('./vendor/jquery'));
 
-  var bootstrap = gulp.src([
-    './node_modules/bootstrap/*',
-    './node_modules/bootstrap/*/*',
-    './node_modules/bootstrap/*/*/*'
-  ])
-  .pipe(gulp.dest('./vendor/bootstrap'));
-
-  return merge(jquery, jqueryEasing,bootstrap);
+  return merge(jquery, jqueryEasing);
 }
 
 // CSS task
 function css() {
   return gulp
-    .src("./scss/**/*.scss")
+    .src("./scss/**/*")
     .pipe(plumber())
     .pipe(sass({
       outputStyle: "expanded",
