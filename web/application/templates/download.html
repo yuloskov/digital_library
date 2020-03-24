@@ -18,7 +18,15 @@
   <main class="main">
     <sidebar class="main__sidebar">
       <div class="main__sidebar__search">
-
+          <p class="main__sidebar__search_desctiption">Search:</p>
+          <input type="search" class="main__sidebar__search_input"/>
+      </div>
+      <div class="main__sidebar__categories">
+        <p class="main__sidebar__categories_desctiption">Choose from:</p>
+        <select class="main__sidebar__categories_input">
+          <option value="subject">Subject</option>
+          <option value="course number">Course Number</option>
+        </select>
       </div>
     </sidebar>
     <div class="main__content">
@@ -30,5 +38,6 @@
       <h2 class="footer__goodbye_text">Contact Us.</h2>
     </div>
   </footer>
+  <div id="hider"></div>
 </body>
 </html>

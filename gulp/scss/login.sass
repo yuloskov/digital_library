@@ -1,6 +1,15 @@
 
 @import "./palette.sass"
 @import url('https://fonts.googleapis.com/css?family=Bellota+Text&display=swap');
+
+html, body
+    margin: 0
+    padding: 0
+    height: 100%
+    overflow: hidden
+    font-family: Arial, Helvetica, sans-serif	
+    font-weight: 100
+    
 html
     background: url("../img/login-background_alternative.jpg") no-repeat center center fixed
     background-size: cover
@@ -8,6 +17,10 @@ html
     overflow: hidden
     backdrop-filter: blur(5px) brightness(1.3)
     color: $primary-color-text
+    
+    input
+        color: $primary-color-text
+
 
 .login
     background-color: $primary-color
@@ -34,7 +47,7 @@ html
     
     &__controls_username, &__controls_password
         display: flex
-        font-size: 25px
+        font-size: 1.5em
         flex-grow: 1
         flex-direction: row
         flex-wrap: wrap
@@ -48,7 +61,7 @@ html
             width: 30%
             text-align: start
             height: 100%
-            padding-top: 20px
+            padding-top: 5px
         
         input
             min-width: 300px
@@ -56,9 +69,8 @@ html
             background-color: rgba($primary-color-light,0.5)
             border: none
             border-radius: 3px
-            font-size: 25px
-            font-weight: bold
             padding-left: 5px
+            font-size: 100%
             transition: all 0.7s ease
             
             &:focus

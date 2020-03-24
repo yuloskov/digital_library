@@ -2,10 +2,15 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow: hidden;
+}
+
+p {
+  margin: 0;
 }
 
 html {
-  background: url("../img/login-background.png") no-repeat center center fixed;
+  background: url("../img/login-background.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   overflow: hidden;
@@ -76,6 +81,66 @@ body {
   }
 }
 
+.main__sidebar__search, .main__sidebar__categories {
+  font-size: 1.7em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5% 0;
+  padding: 3% 0;
+  background-color: rgba(222, 226, 230, 0.35);
+}
+
+.main__sidebar__search p, .main__sidebar__categories p {
+  margin: 2.5% 0;
+}
+
+.main__sidebar__search select:active, .main__sidebar__categories select:active {
+  background: rgba(255, 64, 129, 0.8);
+}
+
+.main__sidebar__search select option, .main__sidebar__categories select option {
+  background: rgba(255, 64, 129, 0.8);
+  color: #FFFFFF;
+  transition: all 1s ease;
+}
+
+.main__sidebar__search select option:disabled, .main__sidebar__categories select option:disabled {
+  background: black;
+}
+
+.main__sidebar__search_input, .main__sidebar__categories_input {
+  color: #FFFFFF;
+  padding: 0 5px;
+  height: 100%;
+  width: 60%;
+  font-size: 100%;
+  background-color: rgba(225, 190, 231, 0.07);
+  border: 0.02px solid rgba(225, 190, 231, 0.3);
+  transition: all 0.7s ease;
+}
+
+.main__sidebar__search_input:hover, .main__sidebar__categories_input:hover {
+  border: 0.02px solid rgba(255, 64, 129, 0.9);
+  box-shadow: 1px 1px 1px 1px rgba(255, 64, 129, 0.2);
+}
+
+.main__sidebar__search_input:focus, .main__sidebar__categories_input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1280px) {
+  .main__sidebar__search, .main__sidebar__categories {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 7%;
+  }
+  .main__sidebar__search_description, .main__sidebar__categories_description {
+    margin: 0;
+  }
+}
+
 .main__content {
   background-color: rgba(225, 190, 231, 0.2);
   min-height: 100%;
@@ -94,4 +159,13 @@ body {
 .footer {
   height: 200px;
   margin-top: auto;
+}
+
+#hider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
