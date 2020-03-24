@@ -1,17 +1,8 @@
-$(document).ready(function(){ 
 
-    // Make the page visible:
+$(document).ready(function(){
+
     $("#hider").fadeOut({
         duration: 700,
         easing: 'swing'
     });
-    // Send AJAX Request to the server with login information
-    // let form = $("#login_form");
-    // $('#login_button').on('click' ,function(e){
-    //
-    //     $.post("login", form.serialize(), function(data){
-    //         document.reload();
-    //     });
-    // });
-
 });
