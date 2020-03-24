@@ -1,0 +1,16 @@
+html {
+  background: url("../img/login-background.png") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(5px) brightness(1.3);
+  backdrop-filter: blur(5px) brightness(1.3);
+  color: #FFFFFF;
+}
+
+.header {
+  width: 100%;
+  background-color: rgba(225, 190, 231, 0.8);
+  min-height: 70px;
+  display: flex;
+}

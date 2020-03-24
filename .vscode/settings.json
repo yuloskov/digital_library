@@ -1,0 +1,20 @@
+{
+    "files.exclude": {
+        "**/__*": true,
+        "**/.*": true,
+        "**/.env": true,
+        "**/.gitignore": true,
+        "**/*.json": true,
+        "**/*.md": true,
+        "**/*.py": true,
+        "**/*.sh": true,
+        "**/*.yml": true,
+        "**/Dockerfile": true,
+        "**/nginx": true,
+        "**/node_modules": true,
+        "**/requirenments.txt": true,
+        "**/utils": true,
+        "**/vendor": true,
+        "**/views": true
+    }
+}
