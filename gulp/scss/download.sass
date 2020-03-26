@@ -68,7 +68,7 @@ body
     margin-top: 0.75%
     margin-bottom: 0.75%
 
-    &__welcome, &__goodbye
+    &__welcome, &__upload
         +text-bg()
         margin: 0.5%
         width: 32.5%
@@ -80,7 +80,7 @@ body
             margin-top: 2.5%
             margin-bottom: 2.5%
     
-    &__goodbye
+    &__upload
         margin-left: auto
         padding-right: 2.5%
         padding-left: 5%
@@ -125,7 +125,7 @@ body
                 option 
                     background: rgba($accent-color, 0.8)
                     color: $primary-color-text
-                    transition: all 1s ease
+                    transition: all 0.25s ease
 
                     &:disabled
                         background: black
@@ -138,7 +138,7 @@ body
                 font-size: 100%
                 background-color: rgba($primary-color-light,0.07)
                 border: 0.02px solid rgba($primary-color-light, 0.3)
-                transition: all 0.7s ease
+                transition: all 0.25s ease
 
                 &:hover
                     border: 0.02px solid rgba($accent-color, 0.9)
@@ -179,7 +179,7 @@ body
                     text-align: center
                     text-shadow: 0.1em 0.1em 0.1em rgba($secondary-text-color, 0.8)
                     cursor: pointer
-                    transition: all 1s ease
+                    transition: all 0.25s ease
                     padding: 0.3em
                     border-radius: 50px
 
@@ -207,13 +207,107 @@ body
             margin: 1%
             padding: 0.5%
             height: 90%
-            transition: all 1s ease
+            transition: all 0.25s ease
             display: flex
             flex-direction: column
             border-radius: 15px
 
+            &_upload
+                +text-bg()
+                margin: 1%
+                padding: 0.5%
+                height: 90%
+                transition: all 0.25s ease
+                display: flex
+                flex-direction: column
+                justify-content: center
+                border-radius: 15px
+
+                &:hover
+                    background-color: rgba($primary-color-text, 0.6)
+                    color: $primary-color-dark
+
+                    input
+                        border: 1px solid rgba($accent_color, 0.8)
+
+                &__input_wrapper
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    border-radius: 10px
+                    transition: all 0.25s ease
+
+
+                    &:hover
+                        background-color: rgba($primary-color-text, 0.6)
+                        
+                    p
+                        margin: 1%
+
+                &__buttons
+                    display: flex
+                    justify-content: center
+
+                    button
+                        marhin: 5%
+                        min-width: 60%
+                        height: 75px
+                        color: $primary-color-text
+                        font-size: 1.7em
+                        background-color: rgba($accent-color, 0.5)
+                        border: none
+                        transition: 0.25s all ease
+
+                        &:hover
+                            cursor: pointer
+                            background-color: rgba($accent-color, 0.9)
+
+                #file
+                    width: 0.1px
+                    height: 0.1px
+                    opacity: 0
+                    overflow: hidden
+                    position: absolute
+                    z-index: -1
+
+                    &_label
+                        width: 60%
+                        height: 37px
+                        color: $primary-color-text
+                        background-color: rgba($accent-color, 0.5)
+                        border: none
+                        transition: 0.25s all ease
+                        text-align: center
+
+                        &:hover 
+                            cursor: pointer
+                            background-color: rgba($accent-color, 0.9)
+
+
+                input
+                    color: $primary-color-dark
+                    padding: 5px 5px
+                    height: 100%
+                    width: 60%
+                    font-size: 100%
+                    background-color: rgba($primary-color-light,0.07)
+                    border: 0.02px solid rgba($primary-color-light, 0.3)
+                    transition: all 0.25s ease
+                    margin: 1%
+
+                    &:hover
+                        border: 0.02px solid rgba($accent-color, 0.9)
+                        -moz-box-shadow:    1px 1px 1px 1px  rgba($accent-color, 0.2)
+                        -webkit-box-shadow: 1px 1px 1px 1px  rgba($accent-color, 0.2)
+                        box-shadow:         1px 1px 1px 1px  rgba($accent-color, 0.2)
+                        color: $primary-color
+
+                    &:focus
+                        outline: none
+
+
             &__header, &__description
-                transition: all 1s ease
+                transition: all 0.25s ease
                 text-shadow: 0.1em 0.1em 0.1em rgba($secondary-text-color, 0.8)
                 padding: 0 2%
             &:hover
@@ -227,7 +321,7 @@ body
             img
                 float: right
                 opacity: 0.5
-                transition: all 1s ease
+                transition: all 0.25s ease
                 margin: 2% 2%
                 max-width: 400px
                 max-height: 600px
@@ -252,7 +346,7 @@ body
                     font-size: 1.7em
                     background-color: rgba($accent-color, 0.5)
                     border: none
-                    transition: 1s all ease
+                    transition: 0.25s all ease
 
                     &:hover
                         cursor: pointer
@@ -261,6 +355,9 @@ body
 .footer
     height: 200px
     margin-top: auto
+
+    &__upload_text
+        cursor: pointer
 
 #hider
     position: absolute
