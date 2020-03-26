@@ -62,7 +62,7 @@ body {
 
 .header, .footer {
   width: 100%;
-  background-color: rgba(225, 190, 231, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   max-height: 10vh;
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@ body {
 }
 
 .header__welcome, .header__upload, .footer__welcome, .footer__upload {
-  background-color: rgba(222, 226, 230, 0.35);
+  background-color: rgba(84, 34, 61, 0.55);
   margin: 0.5%;
   width: 32.5%;
   padding-left: 2.5%;
@@ -115,7 +115,7 @@ body {
 }
 
 .main__sidebar {
-  background-color: rgba(225, 190, 231, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   min-height: 100%;
   max-height: 100%;
   flex-basis: 26.5%;
@@ -130,7 +130,7 @@ body {
   margin: 5% 0;
   padding: 3% 0;
   max-height: 45vh;
-  background-color: rgba(222, 226, 230, 0.35);
+  background-color: rgba(84, 34, 61, 0.55);
 }
 
 .main__sidebar__search p, .main__sidebar__categories p {
@@ -138,11 +138,11 @@ body {
 }
 
 .main__sidebar__search select:active, .main__sidebar__categories select:active {
-  background: rgba(255, 64, 129, 0.8);
+  background: rgba(250, 65, 76, 0.8);
 }
 
 .main__sidebar__search select option, .main__sidebar__categories select option {
-  background: rgba(255, 64, 129, 0.8);
+  background: rgba(250, 65, 76, 0.8);
   color: #FFFFFF;
   transition: all 0.25s ease;
 }
@@ -163,8 +163,8 @@ body {
 }
 
 .main__sidebar__search_input:hover, .main__sidebar__categories_input:hover {
-  border: 0.02px solid rgba(255, 64, 129, 0.9);
-  box-shadow: 1px 1px 1px 1px rgba(255, 64, 129, 0.2);
+  border: 0.02px solid rgba(250, 65, 76, 0.9);
+  box-shadow: 1px 1px 1px 1px rgba(250, 65, 76, 0.2);
 }
 
 .main__sidebar__search_input:focus, .main__sidebar__categories_input:focus {
@@ -187,7 +187,7 @@ body {
   font-size: 1.7em;
   margin: 5% 0;
   max-height: 45vh;
-  background-color: rgba(222, 226, 230, 0.35);
+  background-color: rgba(84, 34, 61, 0.55);
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -213,13 +213,13 @@ body {
 }
 
 .main__sidebar__choose ul li:hover {
-  color: #FF4081;
+  color: #FA414C;
   background-color: rgba(255, 255, 255, 0.6);
   text-shadow: none;
 }
 
 .main__content {
-  background-color: rgba(225, 190, 231, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   min-height: 100%;
   flex-basis: 71.5%;
   min-width: 600px;
@@ -235,7 +235,7 @@ body {
 }
 
 .main__content__article {
-  background-color: rgba(222, 226, 230, 0.35);
+  background-color: rgba(84, 34, 61, 0.55);
   margin: 1%;
   padding: 0.5%;
   height: 90%;
@@ -246,7 +246,8 @@ body {
 }
 
 .main__content__article_upload {
-  background-color: rgba(222, 226, 230, 0.35);
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #54223D;
   margin: 1%;
   padding: 0.5%;
   height: 90%;
@@ -257,13 +258,8 @@ body {
   border-radius: 15px;
 }
 
-.main__content__article_upload:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  color: #7B1FA2;
-}
-
-.main__content__article_upload:hover input {
-  border: 1px solid rgba(255, 64, 129, 0.8);
+.main__content__article_upload input {
+  border: 1px solid rgba(250, 65, 76, 0.8);
 }
 
 .main__content__article_upload__input_wrapper {
@@ -272,6 +268,10 @@ body {
   align-items: center;
   border-radius: 10px;
   transition: all 0.25s ease;
+}
+
+.main__content__article_upload__input_wrapper input {
+  border: 1px solid rgba(250, 65, 76, 0.8);
 }
 
 .main__content__article_upload__input_wrapper:hover {
@@ -293,14 +293,14 @@ body {
   height: 75px;
   color: #FFFFFF;
   font-size: 1.7em;
-  background-color: rgba(255, 64, 129, 0.5);
+  background-color: rgba(250, 65, 76, 0.5);
   border: none;
   transition: 0.25s all ease;
 }
 
 .main__content__article_upload__buttons button:hover {
   cursor: pointer;
-  background-color: rgba(255, 64, 129, 0.9);
+  background-color: rgba(250, 65, 76, 0.9);
 }
 
 .main__content__article_upload #file {
@@ -316,7 +316,7 @@ body {
   width: 60%;
   height: 37px;
   color: #FFFFFF;
-  background-color: rgba(255, 64, 129, 0.5);
+  background-color: rgba(250, 65, 76, 0.5);
   border: none;
   transition: 0.25s all ease;
   text-align: center;
@@ -324,11 +324,11 @@ body {
 
 .main__content__article_upload #file_label:hover {
   cursor: pointer;
-  background-color: rgba(255, 64, 129, 0.9);
+  background-color: rgba(250, 65, 76, 0.9);
 }
 
 .main__content__article_upload input {
-  color: #7B1FA2;
+  color: #54223D;
   padding: 5px 5px;
   height: 100%;
   width: 60%;
@@ -337,11 +337,12 @@ body {
   border: 0.02px solid rgba(225, 190, 231, 0.3);
   transition: all 0.25s ease;
   margin: 1%;
+  border: 1px solid rgba(84, 34, 61, 0.8);
 }
 
 .main__content__article_upload input:hover {
-  border: 0.02px solid rgba(255, 64, 129, 0.9);
-  box-shadow: 1px 1px 1px 1px rgba(255, 64, 129, 0.2);
+  border: 0.02px solid rgba(250, 65, 76, 0.9);
+  box-shadow: 1px 1px 1px 1px rgba(250, 65, 76, 0.2);
   color: #9C27B0;
 }
 
@@ -351,23 +352,22 @@ body {
 
 .main__content__article__header, .main__content__article__description {
   transition: all 0.25s ease;
-  text-shadow: 0.1em 0.1em 0.1em rgba(117, 117, 117, 0.8);
   padding: 0 2%;
 }
 
 .main__content__article:hover {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #54223D;
+  text-shadow: none;
 }
 
 .main__content__article__header:hover, .main__content__article__description:hover {
-  color: #7B1FA2;
-  text-shadow: none;
   cursor: default;
 }
 
 .main__content__article img {
   float: right;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: all 0.25s ease;
   margin: 2% 2%;
   max-width: 400px;
@@ -394,14 +394,14 @@ body {
   margin-bottom: 1%;
   color: #FFFFFF;
   font-size: 1.7em;
-  background-color: rgba(255, 64, 129, 0.5);
+  background-color: rgba(250, 65, 76, 0.5);
   border: none;
   transition: 0.25s all ease;
 }
 
 .main__content__article__buttons button:hover {
   cursor: pointer;
-  background-color: rgba(255, 64, 129, 0.9);
+  background-color: rgba(250, 65, 76, 0.9);
 }
 
 .footer {

@@ -33,10 +33,10 @@ input::-webkit-search-cancel-button
     display: none
 
 =block-bg()
-    background-color: rgba($primary-color-light, 0.2)
+    background-color: rgba($primary-color-text, 0.2)
 
 =text-bg()
-    background-color: rgba($gray-300, 0.35)
+    background-color: rgba($primary-color-dark, 0.55)
 
 body
     display: flex
@@ -213,7 +213,9 @@ body
             border-radius: 15px
 
             &_upload
-                +text-bg()
+                // +text-bg()
+                background-color: rgba($primary-color-text, 0.6)
+                color: $primary-color-dark
                 margin: 1%
                 padding: 0.5%
                 height: 90%
@@ -222,13 +224,9 @@ body
                 flex-direction: column
                 justify-content: center
                 border-radius: 15px
-
-                &:hover
-                    background-color: rgba($primary-color-text, 0.6)
-                    color: $primary-color-dark
-
-                    input
-                        border: 1px solid rgba($accent_color, 0.8)
+                
+                input
+                    border: 1px solid rgba($accent_color, 0.8)
 
                 &__input_wrapper
                     display: flex
@@ -236,6 +234,10 @@ body
                     align-items: center
                     border-radius: 10px
                     transition: all 0.25s ease
+
+                    input
+                        border: 1px solid rgba($accent_color, 0.8)
+
 
 
                     &:hover
@@ -294,6 +296,8 @@ body
                     border: 0.02px solid rgba($primary-color-light, 0.3)
                     transition: all 0.25s ease
                     margin: 1%
+                    border: 1px solid rgba($primary-color-dark, 0.8)
+
 
                     &:hover
                         border: 0.02px solid rgba($accent-color, 0.9)
@@ -308,19 +312,20 @@ body
 
             &__header, &__description
                 transition: all 0.25s ease
-                text-shadow: 0.1em 0.1em 0.1em rgba($secondary-text-color, 0.8)
+                // text-shadow: 0.1em 0.1em 0.1em rgba($secondary-text-color, 0.8)
                 padding: 0 2%
             &:hover
-                background-color: rgba($primary-color-text, 0.6)
-
-            &__header:hover, &__description:hover 
+                background-color: rgba($primary-color-text, 0.8)
                 color: $primary-color-dark
                 text-shadow: none
+
+
+            &__header:hover, &__description:hover 
                 cursor: default
 
             img
                 float: right
-                opacity: 0.5
+                opacity: 0.7
                 transition: all 0.25s ease
                 margin: 2% 2%
                 max-width: 400px
