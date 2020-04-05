@@ -56,18 +56,20 @@
     </sidebar>
     <div class="main__content">
       <article class="main__content__article" id="one">
+
         <div class="main__content__article_wrapper">
           <img src="/static/img/articles/Ross_Networks.jpg" alt="Kenneth and Ross Textbook on Computer Networks" class="main__content__article__image">
         <h1 class="main__content__article__header">Introduction to Computer Networks: A Top-Down Approach.</h1>
-        <div class="main__content__article__description">
+          <div id="bookname">Networks</div>
+          <div class="main__content__article__description">
           Unique among computer networking texts, the <b>Seventh Edition</b> of the popular <b>Computer Networking: A Top Down Approach</b> builds on the author’s long tradition of teaching this complex subject through a layered approach in a “top-down manner.” The text works its way from the application layer down toward the physical layer, motivating readers by exposing them to important concepts early in their study of networking. Focusing on the Internet and the fundamentally important issues of networking, this text provides an excellent foundation for readers interested in computer science and electrical engineering, without requiring extensive knowledge of programming or mathematics. The <b>Seventh Edition</b> has been updated to reflect the most important and exciting recent advances in networking.
         </div>
         </div>
         <div class="main__content__article__buttons">
-          <button class="main__content__article__download">Download</button>
-          <button class="main__content__article__download">Buy</button>
+          <a class="main__content__article__download" href="Networks" download="Networks">Download</a>
         </div>
       </article>
+
       <article class="main__content__article" id="two">
         <div class="main__content__article_wrapper">
           <img src="/static/img/articles/Russell_AI.jpg" alt="Artificial Intelligence: A Modern Approach" class="main__content__article__image">
@@ -79,29 +81,26 @@
         </div>
         </div>
         <div class="main__content__article__buttons">
-          <button class="main__content__article__download">Download</button>
-          <button class="main__content__article__download">Buy</button>
+          <a class="main__content__article__download">Download</a>
         </div>
       </article>
       <article class="main__content__article_upload" id="two">
-        <div class="main__content__article_upload__input">
-          <div class="main__content__article_upload__input_wrapper">
-            <p>Resource title</p>
-            <input type="text" required>
+        <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('upload.upload_file')}}", class="main__content__article_upload_form">
+          <div class="main__content__article_upload__input">
+            <div class="main__content__article_upload__input_wrapper">
+              <p>Book name</p>
+              <input name="title" type="text" required>
+            </div>
+            <div class="main__content__article_upload__input_wrapper">
+              <p>Book itself</p>
+              <input name="file" type="file" id="file" class = "inputfile" required>
+              <label for="file" id='file_label'>Choose file</label>
+            </div>
           </div>
-          <div class="main__content__article_upload__input_wrapper">
-            <p>Book name</p>
-            <input type="text" required>
+          <div class="main__content__article_upload__buttons">
+            <button type="submit" value="upload" class="main__content__article_upload__download"/>
           </div>
-          <div class="main__content__article_upload__input_wrapper">
-            <p>Book itself</p>
-            <input type="file" id="file" class = "inputfile" required>
-            <label for="file" id='file_label'>Choose file</label>
-          </div>
-        </div>
-        <div class="main__content__article_upload__buttons">
-          <button class="main__content__article_upload__download">Upload</button>
-        </div>
+        </form>
       </article>
     </div>
   </main>
