@@ -76,35 +76,32 @@
       </div>
     </article>
     {% endfor %}
-
-    <article class="main__content__article_upload" id="book_upload">
-      <div class="main__content__article_upload__input">
-        <div class="main__content__article_upload__input_wrapper">
-          <p>Resource title</p>
-          <input type="text" required>
-        </div>
-        <div class="main__content__article_upload__input_wrapper">
-          <p>Book name</p>
-          <input type="text" required>
-        </div>
-        <div class="main__content__article_upload__input_wrapper">
-          <p>Book itself</p>
-          <input type="file" id="file" class="inputfile" required>
-          <label for="file" id='file_label'>Choose file</label>
-        </div>
-      </div>
-      <div class="main__content__article_upload__buttons">
-        <button class="main__content__article_upload__download">Upload</button>
-      </div>
-    </article>
-  </div>
-</main>
-<footer class="footer">
-  <div class="footer__upload">
-    <h2 class="footer__upload_text">Contribute to the project.</h2>
-  </div>
-</footer>
-<div id="hider"></div>
-<div id="no_support"><h1>Sorry, we do not support devices with screen size less than 1366x768</h1></div>
+      <article class="main__content__article_upload" id="two">
+        <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('upload.upload_file')}}", class="main__content__article_upload_form">
+          <div class="main__content__article_upload__input">
+            <div class="main__content__article_upload__input_wrapper">
+              <p>Book name</p>
+              <input name="title" type="text" required>
+            </div>
+            <div class="main__content__article_upload__input_wrapper">
+              <p>Book itself</p>
+              <input name="file" type="file" id="file" class = "inputfile" required>
+              <label for="file" id='file_label'>Choose file</label>
+            </div>
+          </div>
+          <div class="main__content__article_upload__buttons">
+            <button type="submit" value="upload" class="main__content__article_upload__download"/>
+          </div>
+        </form>
+      </article>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer__upload">
+      <h2 class="footer__upload_text">Contribute to the project.</h2>
+    </div>
+  </footer>
+  <div id="hider"></div>
+  <div id="no_support"><h1>Sorry, we do not support devices with screen size less than 1366x768</h1></div>
 </body>
 </html>
