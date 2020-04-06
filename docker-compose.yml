@@ -17,6 +17,7 @@ services:
     volumes:
       - "sockets:/tmp/sockets"
       - "./web:/application"
+      - $BOOK_PATH:/var/books
     links:
       - db
     depends_on:
