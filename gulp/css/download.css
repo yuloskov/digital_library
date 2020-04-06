@@ -1,8 +1,9 @@
-html, body {
+html, body, form {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: hidden;
+  background-color: none;
 }
 
 #no_support {
@@ -246,7 +247,7 @@ body {
 }
 
 .main__content__article_upload {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.4);
   color: #54223D;
   margin: 1%;
   padding: 0.5%;
@@ -256,6 +257,18 @@ body {
   flex-direction: column;
   justify-content: center;
   border-radius: 15px;
+}
+
+.main__content__article_upload:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.main__content__article_upload_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: none;
 }
 
 .main__content__article_upload input {
@@ -288,7 +301,7 @@ body {
 }
 
 .main__content__article_upload__buttons button {
-  marhin: 5%;
+  margin: 5%;
   min-width: 60%;
   height: 75px;
   color: #FFFFFF;
@@ -387,9 +400,10 @@ body {
   margin-bottom: 2%;
 }
 
-.main__content__article__buttons button {
+.main__content__article__buttons button, .main__content__article__buttons a {
   width: 400px;
-  height: 75px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin-top: 1%;
   margin-bottom: 1%;
   color: #FFFFFF;
@@ -397,9 +411,11 @@ body {
   background-color: rgba(250, 65, 76, 0.5);
   border: none;
   transition: 0.25s all ease;
+  text-align: center;
+  text-decoration: none;
 }
 
-.main__content__article__buttons button:hover {
+.main__content__article__buttons button:hover, .main__content__article__buttons a:hover {
   cursor: pointer;
   background-color: rgba(250, 65, 76, 0.9);
 }

@@ -14,19 +14,9 @@ bp = Blueprint('download', __name__)
 @bp.route('/download', methods=['GET', 'POST'])
 def download():
     db_manager = DbManager.Manager()
-    # books = db_manager.get_list_of_books()
-    books = [
-        {'_id': 'bookid1',
-         'title': '1',
-         'description': 'desc',
-         'img': 'Ross_Networks.jpg'
-         },
-        {'_id': 'bookid2',
-         'title': '2',
-         'description': 'desc2',
-         'img': 'Russell_AI.jpg'
-         },
-    ]
+    folder = 'var/books'
+    books = db_manager.get_list_of_books()
+    print(books)
     return render_template(
         'download.html',
         books=books,

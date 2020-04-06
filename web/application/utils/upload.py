@@ -23,7 +23,7 @@ def upload_file():
             "filename": request.files['file'].filename}
     client = MongoClient('mongodb://db:27017/')
     db = client['db']
-    db.posts.insert_one(data)
+    db.books.insert_one(data)
     folder = '/var/books'
     file.save(os.path.join(folder, filename))
     return redirect(url_for('download.download'))

@@ -60,6 +60,8 @@
     {% set title = book['title'] %}
     {% set description = book['description'] %}
     {% set img = book['img'] %}
+    {% set filename = book['filename'] %}
+    {% set filepath = "/static/books/" + filename%}
 
 
     <article class="main__content__article" id="{{id}}">
@@ -71,8 +73,7 @@
         </div>
       </div>
       <div class="main__content__article__buttons">
-        <button class="main__content__article__download">Download</button>
-        <button class="main__content__article__download">Buy</button>
+        <a class="main__content__article__download" href="{{filepath}}" download="{{filename}}">Download</a>
       </div>
     </article>
     {% endfor %}
