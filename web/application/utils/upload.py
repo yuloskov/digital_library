@@ -18,12 +18,24 @@ bp = Blueprint('upload', __name__)
 def upload_file():
     filename = request.files['file'].filename
     title = request.form['title']
-    file = request.files['file']
+    file_book = request.files['file']
+    file_picture = request.files['file_picture']
+    file_picture_name = file_picture.filename
+    description = request.form['description']
+
     data = {"title": title,
-            "filename": request.files['file'].filename}
+            "description": description,
+            "filename": filename,
+            "img": file_picture_name,
+            }
     client = MongoClient('mongodb://db:27017/')
     db = client['db']
     db.books.insert_one(data)
-    folder = '/var/books'
-    file.save(os.path.join(folder, filename))
+
+    folder_books = '/var/books'
+
+    folder_images = os.path.join(folder_books, 'covers')
+    file_picture.save(os.path.join(folder_images, file_picture_name))
+
+    file_book.save(os.path.join(folder_books, filename))
     return redirect(url_for('download.download'))
