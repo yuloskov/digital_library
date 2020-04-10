@@ -22,7 +22,7 @@ BOOK_PATH=/home/miserable/Documents/Study/Spring\ 2020\ IU/Software\ Project/Pro
 
 ## Running
 
--To run the server, you need to run the following command:
+- To run the server, you need to run the following command:
 ```
 docker-compose up -d --build
 ```
