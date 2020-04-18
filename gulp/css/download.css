@@ -14,7 +14,7 @@ html, body, form {
   text-align: center;
 }
 
-@media screen and (max-width: 1365px) {
+@media screen and (max-width: 1400px) {
   #no_support {
     display: block;
   }
@@ -72,13 +72,7 @@ body {
   margin-bottom: 0.75%;
 }
 
-@media screen and (max-width: 1365px) {
-  .header, .footer {
-    display: none;
-  }
-}
-
-.header__welcome, .header__upload, .footer__welcome, .footer__upload {
+.header__welcome, .header__upload, .header__rules, .footer__welcome, .footer__upload, .footer__rules {
   background-color: rgba(84, 34, 61, 0.55);
   margin: 0.5%;
   width: 32.5%;
@@ -87,7 +81,7 @@ body {
   border-radius: 15px;
 }
 
-.header__welcome_text, .header__upload_text, .footer__welcome_text, .footer__upload_text {
+.header__welcome_text, .header__upload_text, .header__rules_text, .footer__welcome_text, .footer__upload_text, .footer__rules_text {
   margin-top: 2.5%;
   margin-bottom: 2.5%;
 }
@@ -97,6 +91,35 @@ body {
   padding-right: 2.5%;
   padding-left: 5%;
   text-align: right;
+}
+
+.header__upload_text, .footer__upload_text {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1400px) {
+  .header, .footer {
+    display: none;
+  }
+}
+
+#main__content__article_rules:hover {
+  background-color: rgba(84, 34, 61, 0.55);
+  color: #FFFFFF;
+}
+
+select:active {
+  background: rgba(250, 65, 76, 0.8);
+}
+
+select option {
+  background: rgba(250, 65, 76, 0.8);
+  color: #FFFFFF;
+  transition: all 0.15s ease;
+}
+
+select option:disabled {
+  background: black;
 }
 
 .main {
@@ -138,20 +161,6 @@ body {
   margin: 2.5% 0;
 }
 
-.main__sidebar__search select:active, .main__sidebar__categories select:active {
-  background: rgba(250, 65, 76, 0.8);
-}
-
-.main__sidebar__search select option, .main__sidebar__categories select option {
-  background: rgba(250, 65, 76, 0.8);
-  color: #FFFFFF;
-  transition: all 0.25s ease;
-}
-
-.main__sidebar__search select option:disabled, .main__sidebar__categories select option:disabled {
-  background: black;
-}
-
 .main__sidebar__search_input, .main__sidebar__categories_input {
   color: #FFFFFF;
   padding: 5px 5px;
@@ -160,7 +169,7 @@ body {
   font-size: 100%;
   background-color: rgba(225, 190, 231, 0.07);
   border: 0.02px solid rgba(225, 190, 231, 0.3);
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
 }
 
 .main__sidebar__search_input:hover, .main__sidebar__categories_input:hover {
@@ -208,7 +217,7 @@ body {
   text-align: center;
   text-shadow: 0.1em 0.1em 0.1em rgba(117, 117, 117, 0.8);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   padding: 0.3em;
   border-radius: 50px;
 }
@@ -235,35 +244,35 @@ body {
   }
 }
 
-.main__content__article {
+.main__content__article, .main__content__article_rules {
   background-color: rgba(84, 34, 61, 0.55);
   margin: 1%;
   padding: 0.5%;
   height: 90%;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   display: flex;
   flex-direction: column;
   border-radius: 15px;
 }
 
-.main__content__article_upload {
+.main__content__article_upload, .main__content__article_upload_request, .main__content__article_rules_upload, .main__content__article_rules_upload_request {
   background-color: rgba(255, 255, 255, 0.4);
   color: #54223D;
   margin: 1%;
   padding: 0.5%;
   height: 90%;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 15px;
 }
 
-.main__content__article_upload:hover {
+.main__content__article_upload:hover, .main__content__article_upload_request:hover, .main__content__article_rules_upload:hover, .main__content__article_rules_upload_request:hover {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
-.main__content__article_upload_form {
+.main__content__article_upload_form, .main__content__article_upload_request_form, .main__content__article_rules_upload_form, .main__content__article_rules_upload_request_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -271,37 +280,52 @@ body {
   background-color: none;
 }
 
-.main__content__article_upload input, .main__content__article_upload textarea {
+.main__content__article_upload input, .main__content__article_upload textarea, .main__content__article_upload_request input, .main__content__article_upload_request textarea, .main__content__article_rules_upload input, .main__content__article_rules_upload textarea, .main__content__article_rules_upload_request input, .main__content__article_rules_upload_request textarea {
   border: 1px solid rgba(250, 65, 76, 0.8);
 }
 
-.main__content__article_upload__input_wrapper {
+.main__content__article_upload__input_wrapper, .main__content__article_upload_request__input_wrapper, .main__content__article_rules_upload__input_wrapper, .main__content__article_rules_upload_request__input_wrapper {
   display: flex;
   justify-content: center;
+  padding: 0.1em;
   align-items: center;
   border-radius: 10px;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
 }
 
-.main__content__article_upload__input_wrapper input, .main__content__article_upload__input_wrapper textarea {
+.main__content__article_upload__input_wrapper input, .main__content__article_upload__input_wrapper textarea, .main__content__article_upload_request__input_wrapper input, .main__content__article_upload_request__input_wrapper textarea, .main__content__article_rules_upload__input_wrapper input, .main__content__article_rules_upload__input_wrapper textarea, .main__content__article_rules_upload_request__input_wrapper input, .main__content__article_rules_upload_request__input_wrapper textarea {
   border: 1px solid rgba(250, 65, 76, 0.8);
 }
 
-.main__content__article_upload__input_wrapper:hover {
+.main__content__article_upload__input_wrapper:hover, .main__content__article_upload_request__input_wrapper:hover, .main__content__article_rules_upload__input_wrapper:hover, .main__content__article_rules_upload_request__input_wrapper:hover {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
-.main__content__article_upload__input_wrapper p {
+.main__content__article_upload__input_wrapper p, .main__content__article_upload_request__input_wrapper p, .main__content__article_rules_upload__input_wrapper p, .main__content__article_rules_upload_request__input_wrapper p {
   margin: 1%;
 }
 
-.main__content__article_upload__buttons {
+.main__content__article_upload_newTag, .main__content__article_upload_request_newTag, .main__content__article_rules_upload_newTag, .main__content__article_rules_upload_request_newTag {
+  color: #FFFFFF;
+  font-size: 1em;
+  padding: 0.3em;
+  background-color: rgba(250, 65, 76, 0.5);
+  border: none;
+  transition: 0.25s all ease;
+}
+
+.main__content__article_upload_newTag:hover, .main__content__article_upload_request_newTag:hover, .main__content__article_rules_upload_newTag:hover, .main__content__article_rules_upload_request_newTag:hover {
+  cursor: pointer;
+  background-color: rgba(250, 65, 76, 0.9);
+}
+
+.main__content__article_upload__buttons, .main__content__article_upload_request__buttons, .main__content__article_rules_upload__buttons, .main__content__article_rules_upload_request__buttons {
   display: flex;
   justify-content: center;
 }
 
-.main__content__article_upload__buttons button {
-  margin: 5%;
+.main__content__article_upload__buttons button, .main__content__article_upload_request__buttons button, .main__content__article_rules_upload__buttons button, .main__content__article_rules_upload_request__buttons button {
+  margin: 1%;
   min-width: 60%;
   height: 75px;
   color: #FFFFFF;
@@ -311,12 +335,12 @@ body {
   transition: 0.25s all ease;
 }
 
-.main__content__article_upload__buttons button:hover {
+.main__content__article_upload__buttons button:hover, .main__content__article_upload_request__buttons button:hover, .main__content__article_rules_upload__buttons button:hover, .main__content__article_rules_upload_request__buttons button:hover {
   cursor: pointer;
   background-color: rgba(250, 65, 76, 0.9);
 }
 
-.main__content__article_upload #file, .main__content__article_upload #file_picture {
+.main__content__article_upload #file, .main__content__article_upload #file_picture, .main__content__article_upload_request #file, .main__content__article_upload_request #file_picture, .main__content__article_rules_upload #file, .main__content__article_rules_upload #file_picture, .main__content__article_rules_upload_request #file, .main__content__article_rules_upload_request #file_picture {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -325,7 +349,7 @@ body {
   z-index: -1;
 }
 
-.main__content__article_upload #file_label, .main__content__article_upload #file_picture_label {
+.main__content__article_upload #file_label, .main__content__article_upload #file_picture_label, .main__content__article_upload_request #file_label, .main__content__article_upload_request #file_picture_label, .main__content__article_rules_upload #file_label, .main__content__article_rules_upload #file_picture_label, .main__content__article_rules_upload_request #file_label, .main__content__article_rules_upload_request #file_picture_label {
   width: 60%;
   height: 37px;
   color: #FFFFFF;
@@ -335,12 +359,12 @@ body {
   text-align: center;
 }
 
-.main__content__article_upload #file_label:hover, .main__content__article_upload #file_picture_label:hover {
+.main__content__article_upload #file_label:hover, .main__content__article_upload #file_picture_label:hover, .main__content__article_upload_request #file_label:hover, .main__content__article_upload_request #file_picture_label:hover, .main__content__article_rules_upload #file_label:hover, .main__content__article_rules_upload #file_picture_label:hover, .main__content__article_rules_upload_request #file_label:hover, .main__content__article_rules_upload_request #file_picture_label:hover {
   cursor: pointer;
   background-color: rgba(250, 65, 76, 0.9);
 }
 
-.main__content__article_upload input, .main__content__article_upload textarea {
+.main__content__article_upload input, .main__content__article_upload textarea, .main__content__article_upload select, .main__content__article_upload_request input, .main__content__article_upload_request textarea, .main__content__article_upload_request select, .main__content__article_rules_upload input, .main__content__article_rules_upload textarea, .main__content__article_rules_upload select, .main__content__article_rules_upload_request input, .main__content__article_rules_upload_request textarea, .main__content__article_rules_upload_request select {
   color: #54223D;
   padding: 5px 5px;
   height: 100%;
@@ -348,50 +372,67 @@ body {
   font-size: 100%;
   background-color: rgba(225, 190, 231, 0.07);
   border: 0.02px solid rgba(225, 190, 231, 0.3);
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   margin: 1%;
   border: 1px solid rgba(84, 34, 61, 0.8);
 }
 
-.main__content__article_upload input:hover, .main__content__article_upload textarea:hover {
+.main__content__article_upload input:hover, .main__content__article_upload textarea:hover, .main__content__article_upload select:hover, .main__content__article_upload_request input:hover, .main__content__article_upload_request textarea:hover, .main__content__article_upload_request select:hover, .main__content__article_rules_upload input:hover, .main__content__article_rules_upload textarea:hover, .main__content__article_rules_upload select:hover, .main__content__article_rules_upload_request input:hover, .main__content__article_rules_upload_request textarea:hover, .main__content__article_rules_upload_request select:hover {
   border: 0.02px solid rgba(250, 65, 76, 0.9);
   box-shadow: 1px 1px 1px 1px rgba(250, 65, 76, 0.2);
   color: #9C27B0;
 }
 
-.main__content__article_upload input:focus, .main__content__article_upload textarea:focus {
+.main__content__article_upload input:focus, .main__content__article_upload textarea:focus, .main__content__article_upload select:focus, .main__content__article_upload_request input:focus, .main__content__article_upload_request textarea:focus, .main__content__article_upload_request select:focus, .main__content__article_rules_upload input:focus, .main__content__article_rules_upload textarea:focus, .main__content__article_rules_upload select:focus, .main__content__article_rules_upload_request input:focus, .main__content__article_rules_upload_request textarea:focus, .main__content__article_rules_upload_request select:focus {
   outline: none;
 }
 
-.main__content__article__header, .main__content__article__description {
-  transition: all 0.25s ease;
+.main__content__article__header, .main__content__article__description, .main__content__article_rules__header, .main__content__article_rules__description {
+  transition: all 0.15s ease;
   padding: 0 2%;
 }
 
-.main__content__article:hover {
+.main__content__article__header_rules, .main__content__article__description_rules, .main__content__article_rules__header_rules, .main__content__article_rules__description_rules {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 55vh;
+}
+
+.main__content__article__header_rules ul, .main__content__article__description_rules ul, .main__content__article_rules__header_rules ul, .main__content__article_rules__description_rules ul {
+  margin: 2%;
+  max-width: 100%;
+}
+
+.main__content__article__header_rules ul li, .main__content__article__description_rules ul li, .main__content__article_rules__header_rules ul li, .main__content__article_rules__description_rules ul li {
+  text-shadow: 0.1em 0.1em 0.1em rgba(117, 117, 117, 0.8);
+  padding: 0.3em;
+  border-radius: 50px;
+}
+
+.main__content__article:hover, .main__content__article_rules:hover {
   background-color: rgba(255, 255, 255, 0.8);
   color: #54223D;
   text-shadow: none;
 }
 
-.main__content__article__header:hover, .main__content__article__description:hover {
+.main__content__article__header:hover, .main__content__article__description:hover, .main__content__article_rules__header:hover, .main__content__article_rules__description:hover {
   cursor: default;
 }
 
-.main__content__article img {
+.main__content__article img, .main__content__article_rules img {
   float: right;
   opacity: 0.7;
-  transition: all 0.25s ease;
+  transition: all 0.15s ease;
   margin: 2% 2%;
   max-width: 400px;
   max-height: 600px;
 }
 
-.main__content__article img:hover {
+.main__content__article img:hover, .main__content__article_rules img:hover {
   opacity: 0.9;
 }
 
-.main__content__article__buttons {
+.main__content__article__buttons, .main__content__article_rules__buttons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -400,7 +441,7 @@ body {
   margin-bottom: 2%;
 }
 
-.main__content__article__buttons button, .main__content__article__buttons a {
+.main__content__article__buttons button, .main__content__article__buttons a, .main__content__article_rules__buttons button, .main__content__article_rules__buttons a {
   width: 400px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -415,7 +456,7 @@ body {
   text-decoration: none;
 }
 
-.main__content__article__buttons button:hover, .main__content__article__buttons a:hover {
+.main__content__article__buttons button:hover, .main__content__article__buttons a:hover, .main__content__article_rules__buttons button:hover, .main__content__article_rules__buttons a:hover {
   cursor: pointer;
   background-color: rgba(250, 65, 76, 0.9);
 }
@@ -425,7 +466,7 @@ body {
   margin-top: auto;
 }
 
-.footer__upload_text {
+.footer__upload_text, .footer__rules_text {
   cursor: pointer;
 }
 
