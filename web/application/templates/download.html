@@ -1,117 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/js/download.min.js"></script>
-  <link rel="stylesheet" href="/static/css/download.min.css">
-  <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bookharbor</title>
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/js/download.min.js"></script>
+    <link rel="stylesheet" href="/static/css/download.min.css">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookharbor</title>
 </head>
+
 <body>
-<header class="header">
-  <div class="header__welcome">
-    <h2 class="header__welcome_text">Welcome to the Bookharbor, $username.</h2>
-  </div>
-</header>
-<main class="main">
-  <sidebar class="main__sidebar">
-    <div class="main__sidebar__search">
-      <p class="main__sidebar__search_desctiption">Search:</p>
-      <input type="search" class="main__sidebar__search_input"/>
-    </div>
-    <div class="main__sidebar__categories">
-      <p class="main__sidebar__categories_desctiption">Choose from:</p>
-      <select class="main__sidebar__categories_input" id="sidebar_category">
-        <option value="subject">Subject</option>
-        <option value="cnumber">Course</option>
-      </select>
-    </div>
-    <div class="main__sidebar__choose">
-      <div class="main__sidebar__choose_subject" id="sidebar_subjects">
-        <ul>
-          <li>Mathematics</li>
-          <li>Software Engineering</li>
-          <li>Data Science</li>
-          <li>Computer Science</li>
-        </ul>
-      </div>
-      <div class="main__sidebar__choose_course" id="sidebar_courses">
-        <ul>
-          <li>Calculus</li>
-          <li>Probability and Statistics</li>
-          <li>Computer Architecture</li>
-          <li>Operating Systems</li>
-          <li>Computer Networks</li>
-          <li>Philosophy</li>
-          <li>Data Modelling and Databases</li>
-          <li>Digital Signal Processing</li>
-          <li>Philosophy</li>
-          <li>Data Modelling and Databases</li>
-          <li>Digital Signal Processing</li>
-        </ul>
-      </div>
-    </div>
-  </sidebar>
-  <div class="main__content">
-    {% for book in books %}
-    {% set id = book['_id'] %}
-    {% set title = book['title'] %}
-    {% set description = book['description'] %}
-    {% set img = book['img'] %}
-    {% set filename = book['filename'] %}
-    {% set filepath = "/static/books/" + filename%}
-
-
-    <article class="main__content__article" id="{{id}}">
-      <div class="main__content__article_wrapper">
-        <img src="/static/books/covers/{{img}}" alt="" class="main__content__article__image">
-        <h1 class="main__content__article__header">{{title}}</h1>
-        <div class="main__content__article__description">
-          {{description}}
+    <header class="header">
+        <div class="header__welcome">
+            <h2 class="header__welcome_text">Welcome to the Bookharbor, $username.</h2>
         </div>
-      </div>
-      <div class="main__content__article__buttons">
-        <a class="main__content__article__download" href="{{filepath}}" download="{{filename}}">Download</a>
-      </div>
-    </article>
-    {% endfor %}
-      <article class="main__content__article_upload" id="two">
-        <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('upload.upload_file')}}", class="main__content__article_upload_form">
-          <div class="main__content__article_upload__input">
-            <div class="main__content__article_upload__input_wrapper">
-              <p>Book name</p>
-              <input name="title" type="text" required>
+        <div class="header__upload">
+            <h2 class="header__upload_text">Request materials.</h2>
+        </div>
+    </header>
+    <main class="main">
+        <sidebar class="main__sidebar">
+            <div class="main__sidebar__search">
+                <p class="main__sidebar__search_desctiption">Search:</p>
+                <input type="search" class="main__sidebar__search_input" />
             </div>
-            <div class="main__content__article_upload__input_wrapper">
-              <p>Book description</p>
-              <textarea name="description" rows="4" cols="50" required></textarea>
+            <div class="main__sidebar__categories">
+                <p class="main__sidebar__categories_desctiption">Choose from:</p>
+                <select class="main__sidebar__categories_input" id="sidebar_category">
+                    <option value="subject">Subject</option>
+                    <option value="cnumber">Course</option>
+                </select>
             </div>
-            <div class="main__content__article_upload__input_wrapper">
-              <p>Book file</p>
-              <input name="file" type="file" id="file" class = "inputfile" required>
-              <label for="file" id='file_label'>Choose file</label>
+            <div class="main__sidebar__choose">
+                <div class="main__sidebar__choose_subject" id="sidebar_subjects">
+                    <ul>
+                        <li>Mathematics</li>
+                        <li>Software Engineering</li>
+                        <li>Data Science</li>
+                        <li>Computer Science</li>
+                    </ul>
+                </div>
+                <div class="main__sidebar__choose_course" id="sidebar_courses">
+                    <ul>
+                        <li>Calculus</li>
+                        <li>Probability and Statistics</li>
+                        <li>Computer Architecture</li>
+                        <li>Operating Systems</li>
+                        <li>Computer Networks</li>
+                        <li>Philosophy</li>
+                        <li>Data Modelling and Databases</li>
+                        <li>Digital Signal Processing</li>
+                    </ul>
+                </div>
             </div>
-            <div class="main__content__article_upload__input_wrapper">
-              <p>Book Image</p>
-              <input name="file_picture" type="file" id="file_picture" class = "inputfile" required>
-              <label for="file_picture" id='file_picture_label'>Choose file</label>
-            </div>
-          </div>
-          <div class="main__content__article_upload__buttons">
-            <button type="submit" value="upload" class="main__content__article_upload__download">Upload</button>
-          </div>
-        </form>
-      </article>
+        </sidebar>
+        <div class="main__content">
+            {% for book in books %} {% set id = book['_id'] %} {% set title = book['title'] %} {% set description = book['description'] %} {% set img = book['img'] %} {% set filename = book['filename'] %} {% set filepath = "/static/books/" + filename%}
+
+
+            <article class="main__content__article" id="{{id}}">
+                <div class="main__content__article_wrapper">
+                    <img src="/static/books/covers/{{img}}" alt="" class="main__content__article__image">
+                    <h1 class="main__content__article__header">{{title}}</h1>
+                    <div class="main__content__article__description">
+                        {{description}}
+                    </div>
+                </div>
+                <div class="main__content__article__buttons">
+                    <a class="main__content__article__download" href="{{filepath}}" download="{{filename}}">Download</a>
+                </div>
+            </article>
+            {% endfor %}
+
+            <article class="main__content__article_rules" id="main__content__article_rules">
+                <div class="main__content__article_wrapper">
+                    <h1 class="main__content__article__header">The Library Pirate Code</h1>
+                    <div class="main__content__article__description">
+                        <div class="main__content__article__description_rules">
+                            <ul>
+                                <li>Rule 1</li>
+                                <li>Rule 2</li>
+                                <li>Rule 3</li>
+                                <li>Rule 4</li>
+                                <li>Rule 5</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="main__content__article_upload_request">
+                <form id="uploadbanner" enctype="multipart/form-data" method="post" action="" , class="main__content__article_upload_request_form">
+                    <div class="main__content__article_upload__input">
+                        <div class="main__content__article_upload__input_wrapper">
+                            <p>Book name</p>
+                            <input name="title" type="text" required>
+                        </div>
+                    </div>
+                    <div class="main__content__article_upload__buttons">
+                        <button type="submit" value="upload" class="main__content__article_upload__download">Request</button>
+                    </div>
+                </form>
+            </article>
+
+            <article class="main__content__article_upload" id="two">
+                <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('upload.upload_file')}}" , class="main__content__article_upload_form">
+                    <div class="main__content__article_upload__input">
+                        <div class="main__content__article_upload__input_wrapper">
+                            <p>Book name</p>
+                            <input name="title" type="text" required>
+                        </div>
+                        <div class="main__content__article_upload__input_wrapper">
+                            <p>Subject Tag: </p>
+                            <select class="main__sidebar__choose_subject">
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="SoftwareEngineering">Software Engineering</option>
+                                <option value="DataScience">Data Science</option>
+                                <option value="ComputerScience">Computer Science</option>
+                            </select>
+                        </div>
+                        <div class="main__content__article_upload__input_wrapper" id="tags_one">
+                            <p>Course Tag (I): </p>
+                            <select class="main__sidebar__choose_subject">
+                                <option value="Calculus">Calculus</option>
+                                <option value="ProbabilityAndStatistics">Probability and Statistics</option>
+                                <option value="ComputerArchitecture">Computer Architecture</option>
+                                <option value="OperatingSystems">Operating Systems</option>
+                                <option value="ComputerNetworks">Computer Networks</option>
+                                <option value="Philosophy">Philosophy</option>
+                                <option value="Calculus">Calculus</option>
+                                <option value="Data ModellingAndDatabases">Data Modelling and Databases</option>
+                                <option value="DigitalSignalProcessing">Digital Signal Processing</option>
+                            </select>
+                            <button class="main__content__article_upload_newTag" id="newTag_one">Add new tag</button>
+                        </div>
+                        <div class="main__content__article_upload__input_wrapper">
+                            <p>Book description</p>
+                            <textarea name="description" rows="4" cols="50"></textarea>
+                        </div>
+                        <div class="main__content__article_upload__input_wrapper">
+                            <p>Book file</p>
+                            <input name="file" type="file" id="file" class="inputfile" required>
+                            <label for="file" id='file_label'>Choose file</label>
+                        </div>
+                        <div class="main__content__article_upload__input_wrapper">
+                            <p>Book Image</p>
+                            <input name="file_picture" type="file" id="file_picture" class="inputfile">
+                            <label for="file_picture" id='file_picture_label'>Choose file</label>
+                        </div>
+                    </div>
+                    <div class="main__content__article_upload__buttons">
+                        <button type="submit" value="upload" class="main__content__article_upload__download">Upload</button>
+                    </div>
+                </form>
+            </article>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__rules">
+            <h2 class="footer__rules_text">Usage rules.</h2>
+        </div>
+        <div class="footer__upload">
+            <h2 class="footer__upload_text">Contribute to the project.</h2>
+        </div>
+    </footer>
+    <div id="hider"></div>
+    <div id="no_support">
+        <h1>Sorry, we do not support devices with screen size less than 1680 x 1050</h1>
     </div>
-  </main>
-  <footer class="footer">
-    <div class="footer__upload">
-      <h2 class="footer__upload_text">Contribute to the project.</h2>
-    </div>
-  </footer>
-  <div id="hider"></div>
-  <div id="no_support"><h1>Sorry, we do not support devices with screen size less than 1366x768</h1></div>
 </body>
+
 </html>
