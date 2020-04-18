@@ -17,6 +17,7 @@ services:
     volumes:
       - "sockets:/tmp/sockets"
       - "./web:/application"
+      - $BOOK_PATH:/var/books
     links:
       - db
     depends_on:
@@ -32,6 +33,8 @@ services:
     volumes:
       - "sockets:/tmp/sockets"
       - "./gulp:/var/www"
+      - $BOOK_PATH:/var/books
+
 
   gulp:
     image: dl-gulp

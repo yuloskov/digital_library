@@ -19,7 +19,7 @@ def create_app(config=None):
         TEMPLATES_AUTO_RELOAD=True,
         # TODO replace with env variable
         SECRET_KEY='secret',
-        UPLOAD_PATH='/var/img',
+        BOOK_PATH='/var/books',
         # Database variables
         DATABASE_URL=os.environ['DATABASE_URL'],
         DATABASE_NAME=None,

@@ -1,89 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/js/download.min.js"></script>
-    <link rel="stylesheet" href="/static/css/download.min.css">
-    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookharbor</title>
+<head>
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/js/download.min.js"></script>
+  <link rel="stylesheet" href="/static/css/download.min.css">
+  <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookharbor</title>
 </head>
 <body>
-  <header class="header">
-    <div class="header__welcome">
-      <h2 class="header__welcome_text">Welcome to the Bookharbor, $username.</h2>
+<header class="header">
+  <div class="header__welcome">
+    <h2 class="header__welcome_text">Welcome to the Bookharbor, $username.</h2>
+  </div>
+</header>
+<main class="main">
+  <sidebar class="main__sidebar">
+    <div class="main__sidebar__search">
+      <p class="main__sidebar__search_desctiption">Search:</p>
+      <input type="search" class="main__sidebar__search_input"/>
     </div>
-  </header>
-  <main class="main">
-    <sidebar class="main__sidebar">
-      <div class="main__sidebar__search">
-          <p class="main__sidebar__search_desctiption">Search:</p>
-          <input type="search" class="main__sidebar__search_input"/>
+    <div class="main__sidebar__categories">
+      <p class="main__sidebar__categories_desctiption">Choose from:</p>
+      <select class="main__sidebar__categories_input" id="sidebar_category">
+        <option value="subject">Subject</option>
+        <option value="cnumber">Course</option>
+      </select>
+    </div>
+    <div class="main__sidebar__choose">
+      <div class="main__sidebar__choose_subject" id="sidebar_subjects">
+        <ul>
+          <li>Mathematics</li>
+          <li>Software Engineering</li>
+          <li>Data Science</li>
+          <li>Computer Science</li>
+        </ul>
       </div>
-      <div class="main__sidebar__categories">
-        <p class="main__sidebar__categories_desctiption">Choose from:</p>
-        <select class="main__sidebar__categories_input" id="sidebar_category">
-          <option value="subject">Subject</option>
-          <option value="cnumber">Course</option>
-        </select>
+      <div class="main__sidebar__choose_course" id="sidebar_courses">
+        <ul>
+          <li>Calculus</li>
+          <li>Probability and Statistics</li>
+          <li>Computer Architecture</li>
+          <li>Operating Systems</li>
+          <li>Computer Networks</li>
+          <li>Philosophy</li>
+          <li>Data Modelling and Databases</li>
+          <li>Digital Signal Processing</li>
+          <li>Philosophy</li>
+          <li>Data Modelling and Databases</li>
+          <li>Digital Signal Processing</li>
+        </ul>
       </div>
-      <div class="main__sidebar__choose">
-        <div class="main__sidebar__choose_subject" id="sidebar_subjects">
-          <ul>
-            <li>Mathematics</li>
-            <li>Software Engineering</li>
-            <li>Data Science</li>
-            <li>Computer Science</li>
-          </ul>
-        </div>
-        <div class="main__sidebar__choose_course" id="sidebar_courses">
-          <ul>
-            <li>Calculus</li>
-            <li>Probability and Statistics</li>
-            <li>Computer Architecture</li>
-            <li>Operating Systems</li>
-            <li>Computer Networks</li>
-            <li>Philosophy</li>
-            <li>Data Modelling and Databases</li>
-            <li>Digital Signal Processing</li>
-            <li>Philosophy</li>
-            <li>Data Modelling and Databases</li>
-            <li>Digital Signal Processing</li>
-          </ul>          
-        </div>
-      </div>
-    </sidebar>
-    <div class="main__content">
-      <article class="main__content__article" id="one">
+    </div>
+  </sidebar>
+  <div class="main__content">
+    {% for book in books %}
+    {% set id = book['_id'] %}
+    {% set title = book['title'] %}
+    {% set description = book['description'] %}
+    {% set img = book['img'] %}
+    {% set filename = book['filename'] %}
+    {% set filepath = "/static/books/" + filename%}
 
-        <div class="main__content__article_wrapper">
-          <img src="/static/img/articles/Ross_Networks.jpg" alt="Kenneth and Ross Textbook on Computer Networks" class="main__content__article__image">
-        <h1 class="main__content__article__header">Introduction to Computer Networks: A Top-Down Approach.</h1>
-          <div id="bookname">Networks</div>
-          <div class="main__content__article__description">
-          Unique among computer networking texts, the <b>Seventh Edition</b> of the popular <b>Computer Networking: A Top Down Approach</b> builds on the author’s long tradition of teaching this complex subject through a layered approach in a “top-down manner.” The text works its way from the application layer down toward the physical layer, motivating readers by exposing them to important concepts early in their study of networking. Focusing on the Internet and the fundamentally important issues of networking, this text provides an excellent foundation for readers interested in computer science and electrical engineering, without requiring extensive knowledge of programming or mathematics. The <b>Seventh Edition</b> has been updated to reflect the most important and exciting recent advances in networking.
-        </div>
-        </div>
-        <div class="main__content__article__buttons">
-          <a class="main__content__article__download" href="Networks" download="Networks">Download</a>
-        </div>
-      </article>
 
-      <article class="main__content__article" id="two">
-        <div class="main__content__article_wrapper">
-          <img src="/static/img/articles/Russell_AI.jpg" alt="Artificial Intelligence: A Modern Approach" class="main__content__article__image">
-        <h1 class="main__content__article__header">Artificial Intelligence: A Modern Approach.</h1>
+    <article class="main__content__article" id="{{id}}">
+      <div class="main__content__article_wrapper">
+        <img src="/static/books/covers/{{img}}" alt="" class="main__content__article__image">
+        <h1 class="main__content__article__header">{{title}}</h1>
         <div class="main__content__article__description">
-          Artificial Intelligence: A Modern Approach, 3e offers the most comprehensive, up-to-date introduction to the theory and practice of artificial intelligence. Number one in its field, this textbook is ideal for one or two-semester, undergraduate or graduate-level courses in Artificial Intelligence.
-          Dr. Peter Norvig, contributing Artificial Intelligence author and Professor Sebastian Thrun, a Pearson author are offering a free online course at Stanford University on artificial intelligence.
-          According to an article in The New York Times , the course on artificial intelligence is “one of three being offered experimentally by the Stanford computer science department to extend technology knowledge and skills beyond this elite campus to the entire world.” One of the other two courses, an introduction to database software, is being taught by Pearson author Dr. Jennifer Widom.
+          {{description}}
         </div>
-        </div>
-        <div class="main__content__article__buttons">
-          <a class="main__content__article__download">Download</a>
-        </div>
-      </article>
+      </div>
+      <div class="main__content__article__buttons">
+        <a class="main__content__article__download" href="{{filepath}}" download="{{filename}}">Download</a>
+      </div>
+    </article>
+    {% endfor %}
       <article class="main__content__article_upload" id="two">
         <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('upload.upload_file')}}", class="main__content__article_upload_form">
           <div class="main__content__article_upload__input">
@@ -92,13 +85,22 @@
               <input name="title" type="text" required>
             </div>
             <div class="main__content__article_upload__input_wrapper">
-              <p>Book itself</p>
+              <p>Book description</p>
+              <textarea name="description" rows="4" cols="50" required></textarea>
+            </div>
+            <div class="main__content__article_upload__input_wrapper">
+              <p>Book file</p>
               <input name="file" type="file" id="file" class = "inputfile" required>
               <label for="file" id='file_label'>Choose file</label>
             </div>
+            <div class="main__content__article_upload__input_wrapper">
+              <p>Book Image</p>
+              <input name="file_picture" type="file" id="file_picture" class = "inputfile" required>
+              <label for="file_picture" id='file_picture_label'>Choose file</label>
+            </div>
           </div>
           <div class="main__content__article_upload__buttons">
-            <button type="submit" value="upload" class="main__content__article_upload__download"/>
+            <button type="submit" value="upload" class="main__content__article_upload__download">Upload</button>
           </div>
         </form>
       </article>

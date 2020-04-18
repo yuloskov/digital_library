@@ -48,3 +48,7 @@ class Manager(object):
         else:
             return False
 
+    def get_list_of_books(self):
+        books = list(self.db.books.find({}))
+        return books
+
