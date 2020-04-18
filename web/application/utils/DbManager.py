@@ -51,4 +51,7 @@ class Manager(object):
     def get_list_of_books(self):
         books = list(self.db.books.find({}))
         return books
+    def get_books_by_title(self,title):
+        books=list(self.db.books.find({"title":title}))
+        return books
 
