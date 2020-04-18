@@ -22,12 +22,17 @@ def upload_file():
     file_picture = request.files['file_picture']
     file_picture_name = file_picture.filename
     description = request.form['description']
+    tags = request.form['tags']
+    tags_list = tags.split(" ")
 
-    data = {"title": title,
-            "description": description,
-            "filename": filename,
-            "img": file_picture_name,
-            }
+    data = {
+        "title": title,
+        "description": description,
+        "filename": filename,
+        "img": file_picture_name,
+        "tags": tags_list,
+    }
+
     client = MongoClient('mongodb://db:27017/')
     db = client['db']
     db.books.insert_one(data)
