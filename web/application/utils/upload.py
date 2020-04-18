@@ -34,7 +34,15 @@ def upload_file():
 
     folder_books = '/var/books'
 
-    folder_images = os.path.join(folder_books, 'covers')
+    dir_name = 'covers'
+    folder_images = os.path.join(folder_books, dir_name)
+
+    if not os.path.exists(folder_images):
+        os.mkdir(folder_images)
+        print("Directory ", folder_images, " Created ")
+    else:
+        print("Directory ", folder_images, " already exists")
+
     file_picture.save(os.path.join(folder_images, file_picture_name))
 
     file_book.save(os.path.join(folder_books, filename))
