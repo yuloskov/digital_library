@@ -1,7 +1,34 @@
+
+
 $(document).ready(function() {
 
-    if ($("#list_of_requests").text().trim().length === 0)
-        $("#list_of_requests").html("<h1 class=\"main__content__article__header\">There are no requested books!</h1>");
+    function mousewheel_articles(event) {
+        let next_article;
+        if (articles !== null){
+            if (event.originalEvent.wheelDelta >= 0) {
+                if (current_article + 1 >= number_of_articles)
+                    next_article = 0;
+                else
+                    next_article = current_article + 1;
+
+            } else {
+                if (current_article - 1 < 0)
+                    next_article = number_of_articles - 1;
+                else
+                    next_article = current_article - 1;
+            }
+
+            $(articles[current_article]).fadeOut(150, () => {
+                $(articles[next_article]).fadeIn(150);
+                current_article = next_article;
+            });
+        }
+    }
+
+    let listOfRequests = $("#list_of_requests");
+
+    if (listOfRequests.text().trim().length === 0)
+        listOfRequests.html("<h1 class=\"main__content__article__header\">There are no requested books!</h1>");
 
     // Get all important values:
     let sidebar_category = $('#sidebar_category');
@@ -24,43 +51,78 @@ $(document).ready(function() {
     // delete requests
     delete_request_buttons.on('click', (event) => {
         innerHtml = $($(event.target).siblings()[0]).text();
-        $(event.target).parent().fadeOut(100, () => {
-            // TODO: Make AJAX Query to delete it from server!
-            // $.ajax();
-        }).detach();
+        $(event.target).parent().fadeOut(100).detach();
 
-        if ($("#list_of_requests").text().trim().length === 0)
-            $("#list_of_requests").html("<h1 class=\"main__content__article__header\">There are no requested books!</h1>");
-    });
-
-    // Show Articles
-    $('.main__content').bind('mousewheel', function(event) {
-        let next_article;
-        if (event.originalEvent.wheelDelta >= 0) {
-            if (current_article + 1 >= number_of_articles)
-                next_article = 0;
-            else
-                next_article = current_article + 1;
-
-        } else {
-            if (current_article - 1 < 0)
-                next_article = number_of_articles - 1;
-            else
-                next_article = current_article - 1;
-        }
-
-        $(articles[current_article]).fadeOut(150, () => {
-            $(articles[next_article]).fadeIn(150);
-            current_article = next_article;
+        // Artem, you should change delete_request.py to the URL of the request handler
+        // On the backend site, you will get the name of the request to be deleted.
+        $.post('delete_request.py', {
+            data: innerHtml
         });
 
+        if (listOfRequests.text().trim().length === 0)
+            listOfRequests.html("<h1 class=\"main__content__article__header\">There are no requested books!</h1>");
     });
+
+    // Search
+
+    let search_input = $(".main__sidebar__search_input");
+    let main_content = $(".main__content");
+
+    search_input.on('keypress', (e) => {
+        if (e.which === 13 && $(search_input).val().length !== 0){
+
+            $(articles).detach();
+            articles = null;
+            number_of_articles = 0;
+
+
+            // change search_article on url of handler
+            $.get('/search_article', {
+                data: search_input.val()
+            }, (result) => {
+                $(main_content).append(result);
+                articles = $(".main__content__article");
+                number_of_articles = articles.length;
+                $(articles).fadeOut(0);
+                $(articles[0]).fadeIn(0);
+                current_article = 0;
+                $(".main__content").bind('mousewheel', mousewheel_articles);
+            });
+        }
+    });
+
+
+    let category_choose = $(".choose_category");
+    category_choose.on('click', (e) => {
+        $(articles).detach();
+        articles = null;
+        number_of_articles = 0;
+
+        // change choose_article on url of handler
+        $.get('/choose_article', {
+            data: search_input.val()
+        }, (result) => {
+            $(main_content).append(result);
+            articles = $(".main__content__article");
+            number_of_articles = articles.length;
+            $(articles).fadeOut(0);
+            $(articles[0]).fadeIn(0);
+            current_article = 0;
+            $(".main__content").bind('mousewheel', mousewheel_articles);
+        });
+    });
+
+
+    // Show Articles
+
+    $('.main__content').bind('mousewheel', mousewheel_articles);
 
     // Add new Course tag:
     /**
      * Do not try to understand this code.
      * It is written under mushrooms and other types of drugs.
      * */
+
     $(new_tag_button).on("click", () => {
             $(" <div class=\"main__content__article_upload__input_wrapper\" id='tags_two'>\n" +
                 "<p>Course Tag (II): </p>\n" +
@@ -119,27 +181,7 @@ $(document).ready(function() {
                         $(articles_buttons[arb]).fadeOut(150, () => {
                             visible[arb] = false;
                             $(articles[current_article]).fadeIn(150);
-                            $('.main__content').on("mousewheel", function(event) {
-                                let next_article;
-                                if (event.originalEvent.wheelDelta >= 0) {
-                                    if (current_article + 1 >= number_of_articles)
-                                        next_article = 0;
-                                    else
-                                        next_article = current_article + 1;
-
-                                } else {
-                                    if (current_article - 1 < 0)
-                                        next_article = number_of_articles - 1;
-                                    else
-                                        next_article = current_article - 1;
-                                }
-
-                                $(articles[current_article]).fadeOut(150, () => {
-                                    $(articles[next_article]).fadeIn(150);
-                                    current_article = next_article;
-                                });
-
-                            });
+                            $('.main__content').on("mousewheel", mousewheel_articles);
                         });
                         found_visible = true;
                         break;
@@ -216,3 +258,5 @@ function initialize() {
     });
 
 }
+
+

@@ -14,12 +14,6 @@ html, body, form {
   text-align: center;
 }
 
-@media screen and (max-width: 1400px) {
-  #no_support {
-    display: block;
-  }
-}
-
 p {
   margin: 0;
 }
@@ -97,12 +91,6 @@ body {
   cursor: pointer;
 }
 
-@media screen and (max-width: 1400px) {
-  .header, .footer {
-    display: none;
-  }
-}
-
 #main__content__article_rules:hover {
   background-color: rgba(84, 34, 61, 0.55);
   color: #FFFFFF;
@@ -123,19 +111,12 @@ select option:disabled {
 }
 
 .main {
-  flex-grow: 1;
   display: flex;
   justify-content: space-evenly;
   min-height: 77vh;
   max-height: 77vh;
-  flex-wrap: wrap;
   margin-bottom: 0.75%;
-}
-
-@media screen and (max-width: 1365px) {
-  .main {
-    display: none;
-  }
+  overflow: hidden;
 }
 
 .main__sidebar {
@@ -198,8 +179,6 @@ select option:disabled {
   margin: 5% 0;
   max-height: 45vh;
   background-color: rgba(84, 34, 61, 0.55);
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 @media screen and (max-width: 1300) {
@@ -211,6 +190,8 @@ select option:disabled {
 .main__sidebar__choose ul {
   margin: 2%;
   max-width: 100%;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
 }
 
 .main__sidebar__choose ul li {
@@ -220,6 +201,7 @@ select option:disabled {
   transition: all 0.15s ease;
   padding: 0.3em;
   border-radius: 50px;
+  margin: 0.2em 0.1em;
 }
 
 .main__sidebar__choose ul li:hover {
@@ -231,28 +213,19 @@ select option:disabled {
 .main__content {
   background-color: rgba(255, 255, 255, 0.2);
   min-height: 100%;
-  flex-basis: 71.5%;
-  min-width: 600px;
-  font-size: 1.7em;
-}
-
-@media screen and (max-width: 1024px) {
-  .main__content {
-    flex-basis: 100%;
-    margin-right: 1%;
-    margin-left: 1%;
-  }
+  flex-basis: 72.5%;
 }
 
 .main__content__article, .main__content__article_rules {
   background-color: rgba(84, 34, 61, 0.55);
-  margin: 1%;
-  padding: 0.5%;
-  height: 90%;
+  margin: 0.5%;
+  padding: 0.2%;
   transition: all 0.15s ease;
   display: flex;
   flex-direction: column;
   border-radius: 15px;
+  font-size: 1.3em;
+  min-height: 95%;
 }
 
 .main__content__article_upload, .main__content__article_upload_request, .main__content__article_rules_upload, .main__content__article_rules_upload_request {
@@ -351,12 +324,15 @@ select option:disabled {
 
 .main__content__article_upload #file_label, .main__content__article_upload #file_picture_label, .main__content__article_upload_request #file_label, .main__content__article_upload_request #file_picture_label, .main__content__article_rules_upload #file_label, .main__content__article_rules_upload #file_picture_label, .main__content__article_rules_upload_request #file_label, .main__content__article_rules_upload_request #file_picture_label {
   width: 60%;
-  height: 37px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
   color: #FFFFFF;
   background-color: rgba(250, 65, 76, 0.5);
   border: none;
   transition: 0.25s all ease;
   text-align: center;
+  font-size: 1.3em;
+  vertical-align: center;
 }
 
 .main__content__article_upload #file_label:hover, .main__content__article_upload #file_picture_label:hover, .main__content__article_upload_request #file_label:hover, .main__content__article_upload_request #file_picture_label:hover, .main__content__article_rules_upload #file_label:hover, .main__content__article_rules_upload #file_picture_label:hover, .main__content__article_rules_upload_request #file_label:hover, .main__content__article_rules_upload_request #file_picture_label:hover {
@@ -371,7 +347,6 @@ select option:disabled {
   width: 60%;
   font-size: 100%;
   background-color: rgba(225, 190, 231, 0.07);
-  border: 0.02px solid rgba(225, 190, 231, 0.3);
   transition: all 0.15s ease;
   margin: 1%;
   border: 1px solid rgba(84, 34, 61, 0.8);
@@ -439,6 +414,7 @@ select option:disabled {
   margin-left: auto;
   margin-right: 2%;
   margin-bottom: 2%;
+  float: right;
 }
 
 .main__content__article__buttons button, .main__content__article__buttons a, .main__content__article_rules__buttons button, .main__content__article_rules__buttons a {
@@ -477,4 +453,48 @@ select option:disabled {
   background-color: black;
   overflow: hidden;
   transition: all 0.4s ease;
+}
+
+#article_requests {
+  background-color: rgba(84, 34, 61, 0.55);
+  justify-content: start;
+}
+
+#article_requests h1 {
+  color: #FFFFFF;
+  font-size: 2em;
+}
+
+#list_of_requests {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 100%;
+  font-size: 1.3em;
+  color: #FFFFFF;
+  margin: 2%;
+  max-width: 100%;
+}
+
+#list_of_requests li {
+  margin: 0.1em 0.4em;
+  text-align: left;
+  text-shadow: 0.1em 0.1em 0.1em rgba(117, 117, 117, 0.8);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0.3em;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#list_of_requests li p, #list_of_requests li button {
+  margin: 0px 1em;
+  height: 100%;
+}
+
+#list_of_requests li:hover {
+  color: #FA414C;
+  background-color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
 }
