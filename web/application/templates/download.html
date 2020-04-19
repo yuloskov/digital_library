@@ -41,29 +41,28 @@
             <div class="main__sidebar__choose">
                 <div class="main__sidebar__choose_subject" id="sidebar_subjects">
                     <ul>
-                        <li>Mathematics</li>
-                        <li>Software Engineering</li>
-                        <li>Data Science</li>
-                        <li>Computer Science</li>
+                        <li class="choose_category">Mathematics</li>
+                        <li class="choose_category">Software Engineering</li>
+                        <li class="choose_category">Data Science</li>
+                        <li class="choose_category">Computer Science</li>
                     </ul>
                 </div>
                 <div class="main__sidebar__choose_course" id="sidebar_courses">
                     <ul>
-                        <li>Calculus</li>
-                        <li>Probability and Statistics</li>
-                        <li>Computer Architecture</li>
-                        <li>Operating Systems</li>
-                        <li>Computer Networks</li>
-                        <li>Philosophy</li>
-                        <li>Data Modelling and Databases</li>
-                        <li>Digital Signal Processing</li>
+                        <li class="choose_category">Calculus</li>
+                        <li class="choose_category">Probability and Statistics</li>
+                        <li class="choose_category">Computer Architecture</li>
+                        <li class="choose_category">Operating Systems</li>
+                        <li class="choose_category">Computer Networks</li>
+                        <li class="choose_category">Philosophy</li>
+                        <li class="choose_category">Data Modelling and Databases</li>
+                        <li class="choose_category">Digital Signal Processing</li>
                     </ul>
                 </div>
             </div>
         </sidebar>
         <div class="main__content">
             {% for book in books %} {% set id = book['_id'] %} {% set title = book['title'] %} {% set description = book['description'] %} {% set img = book['img'] %} {% set filename = book['filename'] %} {% set filepath = "/static/books/" + filename%}
-
 
             <article class="main__content__article" id="{{id}}">
                 <div class="main__content__article_wrapper">
