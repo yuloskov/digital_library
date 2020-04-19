@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+    if ($("#list_of_requests").text().trim().length === 0)
+        $("#list_of_requests").html("<h1 class=\"main__content__article__header\">There are no requested books!</h1>");
+
     // Get all important values:
     let sidebar_category = $('#sidebar_category');
     let sidebar_subjects = $('#sidebar_subjects');
@@ -15,6 +18,20 @@ $(document).ready(function() {
     let buttons = [upload_button, rules_button, request_button];
     let visible = [false, false, false];
     let articles_buttons = [$('.main__content__article_upload'), $('.main__content__article_rules'), $('.main__content__article_upload_request')];
+
+    let delete_request_buttons = $('.delete_request');
+
+    // delete requests
+    delete_request_buttons.on('click', (event) => {
+        innerHtml = $($(event.target).siblings()[0]).text();
+        $(event.target).parent().fadeOut(100, () => {
+            // TODO: Make AJAX Query to delete it from server!
+            // $.ajax();
+        }).detach();
+
+        if ($("#list_of_requests").text().trim().length === 0)
+            $("#list_of_requests").html("<h1 class=\"main__content__article__header\">There are no requested books!</h1>");
+    });
 
     // Show Articles
     $('.main__content').bind('mousewheel', function(event) {
@@ -40,8 +57,11 @@ $(document).ready(function() {
     });
 
     // Add new Course tag:
-
-    $(new_tag_button).on("click", (e) => {
+    /**
+     * Do not try to understand this code.
+     * It is written under mushrooms and other types of drugs.
+     * */
+    $(new_tag_button).on("click", () => {
             $(" <div class=\"main__content__article_upload__input_wrapper\" id='tags_two'>\n" +
                 "<p>Course Tag (II): </p>\n" +
                 "<select class=\"main__sidebar__choose_subject\">\n" +
