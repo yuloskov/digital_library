@@ -115,8 +115,8 @@ $(document).ready(function() {
         number_of_articles = 0;
 
         // change choose_article on url of handler
-        $.get('/choose_article', {
-            data: $(e.target).text()
+        $.post('/choose_article', {
+            data: $(e.target).text().replace(/\s/g, '')
         }, (result) => {
             let full_content = "";
             for (let i in result){

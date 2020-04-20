@@ -46,7 +46,8 @@ def create_app(config=None):
         return user
 
     # Register all blueprints to the app
-    from application.views import auth, download, search_article
+    from application.views import auth, download, search_article, \
+        choose_article
     from application.utils import upload, download_file, uploadRequest
 
     app.register_blueprint(auth.bp)
@@ -54,5 +55,6 @@ def create_app(config=None):
     app.register_blueprint(upload.bp)
     app.register_blueprint(download_file.bp)
     app.register_blueprint(search_article.bp)
+    app.register_blueprint(choose_article.bp)
     app.register_blueprint(uploadRequest.bp)
     return app

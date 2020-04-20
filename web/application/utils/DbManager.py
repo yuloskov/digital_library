@@ -58,3 +58,15 @@ class Manager(object):
             '$options': 'i',
         }}))
         return books
+
+    def get_books_by_tag(self, tag):
+        subject_books = list(self.db.books.find({"subject_tag": {
+            '$regex': f'.*{tag}.*',
+            '$options': 'i',
+        }}))
+        course_books = list(self.db.books.find({"course_tag": {
+            '$regex': f'.*{tag}.*',
+            '$options': 'i',
+        }}))
+        books = subject_books + course_books
+        return books

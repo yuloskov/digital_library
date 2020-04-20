@@ -16,22 +16,42 @@ bp = Blueprint('upload', __name__)
 
 @bp.route('/upload', methods=['GET', 'POST'])
 def upload_file():
-    filename = request.files['file'].filename
-    title = request.form['title']
-    file_book = request.files['file']
-    file_picture = request.files['file_picture']
-    file_picture_name = file_picture.filename
-    description = request.form['description']
-    Subject_tag = request.form['Subject Tag:']
-    CourseTag1 = request.form['Course Tag (I):']
+    filename = ''
+    file_book = ''
+    title = ''
+    file_picture = ''
+    file_picture_name = ''
+    description = ''
+    subject_tag = ''
+    course_tag = ''
+
+    if 'file' in request.files:
+        filename = request.files['file'].filename
+        file_book = request.files['file']
+
+    if 'title' in request.form:
+        title = request.form['title']
+
+    if 'file_picture' in request.files:
+        file_picture = request.files['file_picture']
+        file_picture_name = file_picture.filename
+
+    if 'description' in request.form:
+        description = request.form['description']
+
+    if 'subject_tag' in request.form:
+        subject_tag = request.form['subject_tag']
+
+    if 'course_tag' in request.form:
+        course_tag = request.form['course_tag']
 
     data = {
         "title": title,
         "description": description,
         "filename": filename,
         "img": file_picture_name,
-        "Subject_tag": Subject_tag,
-        "Course Tag 1":CourseTag1
+        "subject_tag": subject_tag,
+        "course_tag": course_tag,
     }
 
     client = MongoClient('mongodb://db:27017/')
