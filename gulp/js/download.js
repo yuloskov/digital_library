@@ -77,6 +77,7 @@ $(document).ready(function() {
 
 
             // change search_article on url of handler
+
             $.post('/search_article', {
                 data: search_input.val()
             }, (result) => {
