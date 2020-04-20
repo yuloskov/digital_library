@@ -1,7 +1,4 @@
-import os
-
 from flask import app, request, redirect, url_for, current_app, send_from_directory, Blueprint
-from werkzeug.utils import secure_filename
 
 bp = Blueprint('download_file', __name__)
 
