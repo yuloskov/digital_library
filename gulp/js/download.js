@@ -80,7 +80,22 @@ $(document).ready(function() {
             $.get('/search_article', {
                 data: search_input.val()
             }, (result) => {
-                $(main_content).append(result);
+                let full_content = "";
+                for (let i in result){
+                    let content = "<article class=\"main__content__article\" id=\"" + result[i]._id + "\">\n" +
+                                  "<div class=\"main__content__article_wrapper\">\n";
+
+                    content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
+                    content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
+                    content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
+                    content += "<div class=\"main__content__article__buttons\">\n" +
+                        "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n" + "</div>\n"
+                    content += "</div>\n";
+                    content += "</article>";
+
+                    full_content += content;
+                }
+                $(main_content).append(full_content);
                 articles = $(".main__content__article");
                 number_of_articles = articles.length;
                 $(articles).fadeOut(0);
@@ -102,7 +117,22 @@ $(document).ready(function() {
         $.get('/choose_article', {
             data: search_input.val()
         }, (result) => {
-            $(main_content).append(result);
+            let full_content = "";
+            for (let i in result){
+                let content = "<article class=\"main__content__article\" id=\"" + result[i]._id + "\">\n" +
+                    "<div class=\"main__content__article_wrapper\">\n";
+
+                content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
+                content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
+                content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
+                content += "<div class=\"main__content__article__buttons\">\n" +
+                    "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n" + "</div>\n"
+                content += "</div>\n";
+                content += "</article>";
+
+                full_content += content;
+            }
+            $(main_content).append(full_content);
             articles = $(".main__content__article");
             number_of_articles = articles.length;
             $(articles).fadeOut(0);
