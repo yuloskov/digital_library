@@ -50,12 +50,12 @@ $(document).ready(function() {
 
     // delete requests
     delete_request_buttons.on('click', (event) => {
-        innerHtml = $($(event.target).siblings()[0]).text();
+        innerHtml = $($(event.target).siblings()[1]).text();
         $(event.target).parent().fadeOut(100).detach();
 
         // Artem, you should change delete_request.py to the URL of the request handler
         // On the backend site, you will get the name of the request to be deleted.
-        $.post('delete_request.py', {
+        $.post('/delete_request', {
             data: innerHtml
         });
 
