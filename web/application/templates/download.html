@@ -20,10 +20,12 @@
 <!--        <div class="header__upload">-->
 <!--            <h2 class="header__upload_text">Request materials.</h2>-->
 <!--        </div>-->
+
 <!--        If the user is admin -> show this one: -->
         <div class="header__upload">
             <h2 class="header__upload_text">Requested materials.</h2>
         </div>
+
     </header>
     <main class="main">
         <sidebar class="main__sidebar">
@@ -106,7 +108,7 @@
 <!--            If the user is not admin, show this:-->
 
 <!--            <article class="main__content__article_upload_request">-->
-<!--                <form enctype="multipart/form-data" method="post" action="" , class="main__content__article_upload_request_form">-->
+<!--                <form enctype="multipart/form-data" method="post" action="{{url_for('upload_request.upload_request')}}" , class="main__content__article_upload_request_form">-->
 <!--                    <div class="main__content__article_upload__input">-->
 <!--                        <div class="main__content__article_upload__input_wrapper">-->
 <!--                            <p>Book name</p>-->
@@ -123,21 +125,10 @@
             <article class="main__content__article_upload_request" id="article_requests">
                 <h1 class="main__content__article__header">Requested Books</h1>
                 <ul class="list_of_requests" id="list_of_requests">
-                    <li><p>Requested book - 1</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 2</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 3</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 4</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 5</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 6</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 7</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 8</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 9</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 10</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 11</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 12</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 13</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 14</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
-                    <li><p>Requested book - 15</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
+                    {% for request in requests %}
+                    {% set title = request['title'] %}
+                    <li><p>{{title}}</p> <button class="main__content__article_upload_newTag delete_request">Delete</button></li>
+                    {% endfor %}
                 </ul>
             </article>
 

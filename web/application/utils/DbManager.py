@@ -70,3 +70,7 @@ class Manager(object):
         }}))
         books = subject_books + course_books
         return books
+
+    def get_requests(self):
+        requests = list(self.db.upload_requests.find({}))
+        return requests
