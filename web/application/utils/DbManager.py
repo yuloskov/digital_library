@@ -53,5 +53,8 @@ class Manager(object):
         return books
 
     def get_books_by_title(self, title):
-        books = list(self.db.books.find({"title": title}))
+        books = list(self.db.books.find({"title": {
+            '$regex': f'.*{title}.*',
+            '$options': 'i',
+        }}))
         return books

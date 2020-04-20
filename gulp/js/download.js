@@ -77,7 +77,7 @@ $(document).ready(function() {
 
 
             // change search_article on url of handler
-            $.get('/search_article', {
+            $.post('/search_article', {
                 data: search_input.val()
             }, (result) => {
                 let full_content = "";

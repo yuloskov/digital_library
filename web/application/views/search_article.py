@@ -8,19 +8,24 @@ from flask import (
     render_template,
 )
 
+from application.utils import DbManager
+
 bp = Blueprint('search_article', __name__)
 
 
-@bp.route('/search_article', methods=['GET'])
+@bp.route('/search_article', methods=['GET', 'POST'])
 def search_article():
-    return {'0': {'_id': '5e8af0c48ca6347f6141098c', 'title': 'book',
-                  'filename': '11b_lab_session (1).pdf'},
-            '1': {'_id': '5e8af2799f493a218f4003ec', 'title': 'img',
-                  'filename': 'ch1.png'},
-            '2': {'_id': '5e8b53eae1694a3fac1a8776',
-                  'title': 'some_book',
-                  'filename': '11b_lab_session_exercises.pdf'},
-            '3': {'_id': '5e8c26073f50e74b393223d4', 'title': 'ex',
-                  'description': 'desc', 'filename': '234.pdf.pdf',
-                  'img': 'example.jpeg'}
-            }
+    book_title = ''
+    if 'data' in request.form:
+        book_title = request.form['data']
+    print(book_title)
+    db_manager = DbManager.Manager()
+    book_list = db_manager.get_books_by_title(book_title)
+    book_dict = {}
+    i = 0
+    for book in book_list:
+        book['_id'] = str(book['_id'])
+        book_dict[i] = book
+        i += 1
+
+    return book_dict
