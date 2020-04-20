@@ -89,9 +89,9 @@ $(document).ready(function() {
                     content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
                     content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
                     content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
+                    content += "</div>\n";
                     content += "<div class=\"main__content__article__buttons\">\n" +
                         "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n" + "</div>\n"
-                    content += "</div>\n";
                     content += "</article>";
 
                     full_content += content;
@@ -126,9 +126,9 @@ $(document).ready(function() {
                 content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
                 content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
                 content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
+                content += "</div>\n";
                 content += "<div class=\"main__content__article__buttons\">\n" +
                     "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n" + "</div>\n"
-                content += "</div>\n";
                 content += "</article>";
 
                 full_content += content;
