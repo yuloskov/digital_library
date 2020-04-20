@@ -47,11 +47,12 @@ def create_app(config=None):
 
     # Register all blueprints to the app
     from application.views import auth, download, search_article
-    from application.utils import upload, download_file
+    from application.utils import upload, download_file, uploadRequest
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(download.bp)
     app.register_blueprint(upload.bp)
     app.register_blueprint(download_file.bp)
     app.register_blueprint(search_article.bp)
+    app.register_blueprint(uploadRequest.bp)
     return app
