@@ -116,7 +116,7 @@ $(document).ready(function() {
 
         // change choose_article on url of handler
         $.get('/choose_article', {
-            data: search_input.val()
+            data: $(e.target).text()
         }, (result) => {
             let full_content = "";
             for (let i in result){
