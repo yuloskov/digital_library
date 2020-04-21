@@ -1,6 +1,7 @@
-
-
 $(document).ready(function() {
+
+    // Page is loaded, display it:
+    initialize();
 
     function mousewheel_articles(event) {
         let next_article;
@@ -196,40 +197,38 @@ $(document).ready(function() {
     // Show Rules Page
     for (let b in buttons) {
         $(buttons[b]).on("click", () => {
-            $(articles[current_article]).fadeOut(150, () => {
-                let found_visible = false;
-                for (arb in articles_buttons) {
-                    if (visible[arb] && arb !== b) {
-                        $(articles_buttons[arb]).fadeOut(150, () => {
-                            visible[arb] = false;
-                            visible[b] = true;
+                $(articles[current_article]).fadeOut(150, () => {
+                    let found_visible = false;
+                    for (arb in articles_buttons) {
+                        if (visible[arb] && arb !== b) {
+                            $(articles_buttons[arb]).fadeOut(150, () => {
+                                visible[arb] = false;
+                                visible[b] = true;
+                                $(articles_buttons[b]).fadeIn(150);
+                                $('.main__content').off("mousewheel");
+                            });
+                            found_visible = true;
+                            break;
+                        } else if (visible[arb] && arb === b) {
+                            $(articles_buttons[arb]).fadeOut(150, () => {
+                                visible[arb] = false;
+                                $(articles[current_article]).fadeIn(150);
+                                $('.main__content').on("mousewheel", mousewheel_articles);
+                            });
+                            found_visible = true;
+                            break;
+                        }
+                    }
+                    if (!found_visible) {
+                        $(articles[current_article]).fadeOut(150, () => {
                             $(articles_buttons[b]).fadeIn(150);
+                            visible[b] = true;
                             $('.main__content').off("mousewheel");
                         });
-                        found_visible = true;
-                        break;
-                    } else if (visible[arb] && arb === b) {
-                        $(articles_buttons[arb]).fadeOut(150, () => {
-                            visible[arb] = false;
-                            $(articles[current_article]).fadeIn(150);
-                            $('.main__content').on("mousewheel", mousewheel_articles);
-                        });
-                        found_visible = true;
-                        break;
                     }
-                }
-                if (!found_visible) {
-                    $(articles[current_article]).fadeOut(150, () => {
-                        $(articles_buttons[b]).fadeIn(150);
-                        visible[b] = true;
-                        $('.main__content').off("mousewheel");
-                    });
-                }
-            });
+                });
         });
     }
-    // Page is loaded, display it:
-    initialize();
 
     // Sidebar Animation:
     sidebar_category.on("change", function() {
@@ -267,14 +266,41 @@ function initialize() {
     let articles;
 
     articles = $('.main__content__article');
-    articles.hide(1, () => {
-        $(articles[0]).fadeIn(1);
-        $('.main__content__article_upload').hide();
-        $('.main__content__article_upload_request').hide();
-
-    });
+    if (articles.length !== 0) {
+        articles.hide(1, () => {
+            $(articles[0]).fadeIn(1);
+        });
+    } else {
+        $(".main__content").append("<article class=\"main__content__article main__content__article_rules\" id=\"main__content__article\">\n" +
+            "                <div class=\"main__content__article_wrapper\">\n" +
+            "                    <h1 class=\"main__content__article__header\">The Library Pirate Code</h1>\n" +
+            "                    <div class=\"main__content__article__description\">\n" +
+            "                        <p style=\"text-indent: 1em\">This is Pirate Code: set of rules of Book Harbour. Following this rules will lead you to successful contribution to our website.\n" +
+            "                            Important: this rules should be followed by contributors only, if you use website and don’t contribute you are allowed not to read this.\n" +
+            "\n" +
+            "                        </p>\n" +
+            "                        <br>\n" +
+            "                        <p style=\"text-indent: 1em\">\n" +
+            "                            When you try to Contribute to our project, you create an upload request, which is not necessarily will be accepted by administrator, it can also be declined in case if you do not follow next rules:\n" +
+            "                        </p>\n" +
+            "                        <div class=\"main__content__article__description_rules\">\n" +
+            "                            <ul>\n" +
+            "                                <li>Our site is based on anonymous work, when you contribute to project, you are not allowed to specify your credentials, organization or something that can threat your anonymity.</li>\n" +
+            "                                <li>We do not accept descriptions or pictures that have potentially offensive to any group of people content.</li>\n" +
+            "                                <li>Materials uploaded to the site should match with their title and description, don’t waste time of people, who search for needed materials and find there something that doesn’t match their expectations.</li>\n" +
+            "                                <li>Don’t upload short versions of books: either full or nothing.</li>\n" +
+            "                                <li>(optional, but preferred) Add tags to your book, that will simplify search for the others.</li>\n" +
+            "                            </ul>\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "            </article>");
+        $(".footer__rules").fadeOut(0);
+    }
 
     $("#main__content__article_rules").hide();
+    $('.main__content__article_upload').hide();
+    $('.main__content__article_upload_request').hide();
 
     if ($('#sidebar_category').val() === 'subject')
         sidebar_list = $('#sidebar_courses');
@@ -289,5 +315,3 @@ function initialize() {
     });
 
 }
-
-

@@ -107,31 +107,31 @@
 
 <!--            If the user is not admin, show this:-->
 
-            <article class="main__content__article_upload_request">
-                <form enctype="multipart/form-data" method="post" action="{{url_for('manage_requests.upload_request')}}" , class="main__content__article_upload_request_form">
-                    <div class="main__content__article_upload__input">
-                        <div class="main__content__article_upload__input_wrapper">
-                            <p>Book name</p>
-                            <input name="title" type="text" required>
-                        </div>
-                    </div>
-                    <div class="main__content__article_upload__buttons">
-                        <button type="submit" value="upload" class="main__content__article_upload__download">Request</button>
-                    </div>
-                </form>
-            </article>
+<!--            <article class="main__content__article_upload_request">-->
+<!--                <form enctype="multipart/form-data" method="post" action="{{url_for('manage_requests.upload_request')}}" , class="main__content__article_upload_request_form">-->
+<!--                    <div class="main__content__article_upload__input">-->
+<!--                        <div class="main__content__article_upload__input_wrapper">-->
+<!--                            <p>Book name</p>-->
+<!--                            <input name="title" type="text" required>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="main__content__article_upload__buttons">-->
+<!--                        <button type="submit" value="upload" class="main__content__article_upload__download">Request</button>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </article>-->
 
 <!--            If the user is admin, show this: -->
-<!--            <article class="main__content__article_upload_request" id="article_requests">-->
-<!--                <h1 class="main__content__article__header">Requested Books</h1>-->
-<!--                <ul class="list_of_requests" id="list_of_requests">-->
-<!--                    {% for request in requests %}-->
-<!--                    {% set title = request['title'] %}-->
-<!--                    {% set id = request['_id'] %}-->
-<!--                    <li><p>{{title}}</p> <p hidden>{{id}}</p> <button class="main__content__article_upload_newTag delete_request" >Delete</button></li>-->
-<!--                    {% endfor %}-->
-<!--                </ul>-->
-<!--            </article>-->
+            <article class="main__content__article_upload_request" id="article_requests">
+                <h1 class="main__content__article__header">Requested Books</h1>
+                <ul class="list_of_requests" id="list_of_requests">
+                    {% for request in requests %}
+                    {% set title = request['title'] %}
+                    {% set id = request['_id'] %}
+                    <li><p>{{title}}</p> <p hidden>{{id}}</p> <button class="main__content__article_upload_newTag delete_request" >Delete</button></li>
+                    {% endfor %}
+                </ul>
+            </article>
 
 <!--            Do not touch everything after this line: -->
 
