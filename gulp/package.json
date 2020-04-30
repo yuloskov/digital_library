@@ -25,7 +25,7 @@
         "url": "https://github.com/yuloskov/digital_library"
     },
     "dependencies": {
-        "jquery": "3.4.1",
+        "jquery": "3.5.0",
         "jquery.easing": "^1.4.1"
     },
     "devDependencies": {
