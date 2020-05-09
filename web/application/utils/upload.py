@@ -52,6 +52,7 @@ def upload_file():
         "img": file_picture_name,
         "subject_tag": subject_tag,
         "course_tag": course_tag,
+        "approved": "false",
     }
 
     client = MongoClient('mongodb://db:27017/')
