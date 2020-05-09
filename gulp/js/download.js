@@ -158,7 +158,7 @@ $(document).ready(function() {
     $(new_tag_button).on("click", () => {
             $(" <div class=\"main__content__article_upload__input_wrapper\" id='tags_two'>\n" +
                 "<p>Course Tag (II): </p>\n" +
-                "<select class=\"main__sidebar__choose_subject\">\n" +
+                "<div  class=\"main__content__article_select\"><select class=\"main__sidebar__choose_subject\">\n" +
                 "<option value=\"Calculus\">Calculus</option>\n" +
                 "<option value=\"ProbabilityAndStatistics\">Probability and Statistics</option>\n" +
                 "<option value=\"ComputerArchitecture\">Computer Architecture</option>\n" +
@@ -169,14 +169,14 @@ $(document).ready(function() {
                 "<option value=\"Data ModellingAndDatabases\">Data Modelling and Databases</option>\n" +
                 "<option value=\"DigitalSignalProcessing\">Digital Signal Processing</option>\n" +
                 "</select>\n" +
-                "<button class=\"main__content__article_upload_newTag\" id=\"newTag_two\">Add new tag</button>\n" +
+                "<button class=\"main__content__article_upload_newTag\" id=\"newTag_two\">Add new tag</button></div>\n" +
                 "</div>").insertAfter('#tags_one');
             $("#newTag_one").fadeOut(0);
             new_tag_button = $("#newTag_two");
             new_tag_button.on("click", () => {
                 $(" <div class=\"main__content__article_upload__input_wrapper\" id='tags_three'>\n" +
                     "<p>Course Tag (III): </p>\n" +
-                    "<select class=\"main__sidebar__choose_subject\">\n" +
+                    "<div  class=\"main__content__article_select\"><select class=\"main__sidebar__choose_subject\">\n" +
                     "<option value=\"Calculus\">Calculus</option>\n" +
                     "<option value=\"ProbabilityAndStatistics\">Probability and Statistics</option>\n" +
                     "<option value=\"ComputerArchitecture\">Computer Architecture</option>\n" +
@@ -186,7 +186,7 @@ $(document).ready(function() {
                     "<option value=\"Calculus\">Calculus</option>\n" +
                     "<option value=\"Data ModellingAndDatabases\">Data Modelling and Databases</option>\n" +
                     "<option value=\"DigitalSignalProcessing\">Digital Signal Processing</option>\n" +
-                    "</select>\n" +
+                    "</select></div>\n" +
                     "</div>").insertAfter('#tags_one');
                 $("#newTag_two").fadeOut(0);
             });
@@ -294,10 +294,11 @@ function initialize() {
             "                        </div>\n" +
             "                    </div>\n" +
             "                </div>\n" +
+            "<a class=\"download_rules\" href=\"${PirateCode}\" download=\"${PirateCode}\">How to Use</a>" +
             "            </article>");
         $(".footer__rules").fadeOut(0);
     }
-
+// On Line 297 you need to change ${PirateCode} to the link to the document with usage rules
     $("#main__content__article_rules").hide();
     $('.main__content__article_upload').hide();
     $('.main__content__article_upload_request').hide();

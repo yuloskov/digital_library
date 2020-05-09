@@ -5,7 +5,7 @@ html, body, form
     padding: 0
     height: 100%
     overflow: hidden
-    background-color: none
+    background-color: noneS
 
 #no_support
     display: none
@@ -212,6 +212,19 @@ select
             font-size: 1.3em
             min-height: 95%
 
+            &_select
+                width: 60%
+                display: flex
+                justify-content: space-between
+                align-items: center
+                margin: 0.5% 1%
+                padding: 0
+
+                select
+                    max-width: 100% !important
+                    flex-grow: 1
+                    box-sizing: content-box
+
 
             &_upload, &_upload_request
                 background-color: rgba($primary-color-text, 0.4)
@@ -240,14 +253,17 @@ select
 
                 &__input_wrapper
                     display: flex
-                    justify-content: center
-                    padding: 0.1em
+                    justify-content: space-between
                     align-items: center
                     border-radius: 10px
                     transition: all 0.15s ease
+                    padding: 0 5%
 
-                    input, textarea
+                    input, textarea, select
                         border: 1px solid rgba($accent_color, 0.8)
+                        min-width: 60%
+                        max-width: 60%
+                        box-sizing: border-box
 
                     &:hover
                         background-color: rgba($primary-color-text, 0.6)
@@ -394,6 +410,23 @@ select
                     &:hover
                         cursor: pointer
                         background-color: rgba($accent-color, 0.9)
+
+.download_rules
+    width: 400px
+    padding-top: 20px
+    padding-bottom: 20px
+    margin: 1% 5% 1% auto
+    color: $primary-color-text
+    font-size: 1.7em
+    background-color: rgba($accent-color, 0.5)
+    border: none
+    transition: 0.25s all ease
+    text-align: center
+    text-decoration: none
+
+    &:hover
+        cursor: pointer
+        background-color: rgba($accent-color, 0.9)
 
 .footer
     height: 200px

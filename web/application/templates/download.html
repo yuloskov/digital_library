@@ -8,13 +8,13 @@
     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookharbor</title>
+    <title>Book Harbour</title>
 </head>
 
 <body>
     <header class="header">
         <div class="header__welcome">
-            <h2 class="header__welcome_text">Welcome to the Bookharbor, $username.</h2>
+            <h2 class="header__welcome_text">Welcome to the Book Harbour, $username.</h2>
         </div>
 <!--        If the user is not admin -> show this one: -->
 <!--        <div class="header__upload">-->
@@ -102,7 +102,9 @@
                             </ul>
                         </div>
                     </div>
+                    <a class="download_rules" href="${PirateCode}" download="${PirateCode}">How to Use</a>
                 </div>
+
             </article>
 
 <!--            If the user is not admin, show this:-->
@@ -153,18 +155,20 @@
                         </div>
                         <div class="main__content__article_upload__input_wrapper" id="tags_one">
                             <p>Course Tag (I): </p>
-                            <select name='course_tag' class="main__sidebar__choose_subject">
-                                <option value="Calculus">Calculus</option>
-                                <option value="ProbabilityAndStatistics">Probability and Statistics</option>
-                                <option value="ComputerArchitecture">Computer Architecture</option>
-                                <option value="OperatingSystems">Operating Systems</option>
-                                <option value="ComputerNetworks">Computer Networks</option>
-                                <option value="Philosophy">Philosophy</option>
-                                <option value="Calculus">Calculus</option>
-                                <option value="Data ModellingAndDatabases">Data Modelling and Databases</option>
-                                <option value="DigitalSignalProcessing">Digital Signal Processing</option>
-                            </select>
-                            <button class="main__content__article_upload_newTag" id="newTag_one">Add new tag</button>
+                            <div class="main__content__article_select">
+                                <select name='course_tag' class="main__sidebar__choose_subject">
+                                    <option value="Calculus">Calculus</option>
+                                    <option value="ProbabilityAndStatistics">Probability and Statistics</option>
+                                    <option value="ComputerArchitecture">Computer Architecture</option>
+                                    <option value="OperatingSystems">Operating Systems</option>
+                                    <option value="ComputerNetworks">Computer Networks</option>
+                                    <option value="Philosophy">Philosophy</option>
+                                    <option value="Calculus">Calculus</option>
+                                    <option value="Data ModellingAndDatabases">Data Modelling and Databases</option>
+                                    <option value="DigitalSignalProcessing">Digital Signal Processing</option>
+                                </select>
+                                <button class="main__content__article_upload_newTag" id="newTag_one">Add new tag</button>
+                            </div>
                         </div>
                         <div class="main__content__article_upload__input_wrapper">
                             <p>Book description</p>

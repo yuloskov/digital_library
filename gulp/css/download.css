@@ -3,7 +3,7 @@ html, body, form {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  background-color: none;
+  background-color: noneS;
 }
 
 #no_support {
@@ -228,6 +228,21 @@ select option:disabled {
   min-height: 95%;
 }
 
+.main__content__article_select, .main__content__article_rules_select {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5% 1%;
+  padding: 0;
+}
+
+.main__content__article_select select, .main__content__article_rules_select select {
+  max-width: 100% !important;
+  flex-grow: 1;
+  box-sizing: content-box;
+}
+
 .main__content__article_upload, .main__content__article_upload_request, .main__content__article_rules_upload, .main__content__article_rules_upload_request {
   background-color: rgba(255, 255, 255, 0.4);
   color: #54223D;
@@ -259,15 +274,18 @@ select option:disabled {
 
 .main__content__article_upload__input_wrapper, .main__content__article_upload_request__input_wrapper, .main__content__article_rules_upload__input_wrapper, .main__content__article_rules_upload_request__input_wrapper {
   display: flex;
-  justify-content: center;
-  padding: 0.1em;
+  justify-content: space-between;
   align-items: center;
   border-radius: 10px;
   transition: all 0.15s ease;
+  padding: 0 5%;
 }
 
-.main__content__article_upload__input_wrapper input, .main__content__article_upload__input_wrapper textarea, .main__content__article_upload_request__input_wrapper input, .main__content__article_upload_request__input_wrapper textarea, .main__content__article_rules_upload__input_wrapper input, .main__content__article_rules_upload__input_wrapper textarea, .main__content__article_rules_upload_request__input_wrapper input, .main__content__article_rules_upload_request__input_wrapper textarea {
+.main__content__article_upload__input_wrapper input, .main__content__article_upload__input_wrapper textarea, .main__content__article_upload__input_wrapper select, .main__content__article_upload_request__input_wrapper input, .main__content__article_upload_request__input_wrapper textarea, .main__content__article_upload_request__input_wrapper select, .main__content__article_rules_upload__input_wrapper input, .main__content__article_rules_upload__input_wrapper textarea, .main__content__article_rules_upload__input_wrapper select, .main__content__article_rules_upload_request__input_wrapper input, .main__content__article_rules_upload_request__input_wrapper textarea, .main__content__article_rules_upload_request__input_wrapper select {
   border: 1px solid rgba(250, 65, 76, 0.8);
+  min-width: 60%;
+  max-width: 60%;
+  box-sizing: border-box;
 }
 
 .main__content__article_upload__input_wrapper:hover, .main__content__article_upload_request__input_wrapper:hover, .main__content__article_rules_upload__input_wrapper:hover, .main__content__article_rules_upload_request__input_wrapper:hover {
@@ -433,6 +451,25 @@ select option:disabled {
 }
 
 .main__content__article__buttons button:hover, .main__content__article__buttons a:hover, .main__content__article_rules__buttons button:hover, .main__content__article_rules__buttons a:hover {
+  cursor: pointer;
+  background-color: rgba(250, 65, 76, 0.9);
+}
+
+.download_rules {
+  width: 400px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 1% 5% 1% auto;
+  color: #FFFFFF;
+  font-size: 1.7em;
+  background-color: rgba(250, 65, 76, 0.5);
+  border: none;
+  transition: 0.25s all ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.download_rules:hover {
   cursor: pointer;
   background-color: rgba(250, 65, 76, 0.9);
 }
