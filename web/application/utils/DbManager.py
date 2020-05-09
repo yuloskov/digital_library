@@ -17,9 +17,9 @@ class Manager(object):
 
     #
     # insert user's login and password
-    def insert_user(self, login, password):
+    def insert_user(self, login, password, role):
         hashed_password = self.hash_password(password)
-        post = {"login": login, "password": hashed_password}
+        post = {"login": login, "password": hashed_password, "role": role}
         self.db.posts.insert_one(post)
 
     def get_user(self, login):
