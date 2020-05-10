@@ -23,7 +23,9 @@ def upload_file():
     file_picture_name = ''
     description = ''
     subject_tag = ''
-    course_tag = ''
+    course_tag1 = ''
+    course_tag2 = ''
+    course_tag3 = ''
 
     if 'file' in request.files:
         filename = request.files['file'].filename
@@ -42,8 +44,14 @@ def upload_file():
     if 'subject_tag' in request.form:
         subject_tag = request.form['subject_tag']
 
-    if 'course_tag' in request.form:
-        course_tag = request.form['course_tag']
+    if 'course_tag1' in request.form:
+        course_tag1 = request.form['course_tag1']
+
+    if 'course_tag2' in request.form:
+        course_tag2 = request.form['course_tag2']
+
+    if 'course_tag3' in request.form:
+        course_tag3 = request.form['course_tag3']
 
     data = {
         "title": title,
@@ -51,7 +59,9 @@ def upload_file():
         "filename": filename,
         "img": file_picture_name,
         "subject_tag": subject_tag,
-        "course_tag": course_tag,
+        "course_tag1": course_tag1,
+        "course_tag2":course_tag2,
+        "course_tag3":course_tag3,
         "approved": "false",
     }
 
