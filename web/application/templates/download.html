@@ -2,221 +2,217 @@
 <html lang="en">
 
 <head>
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/js/download.min.js"></script>
-    <link rel="stylesheet" href="/static/css/download.min.css">
-    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Harbour</title>
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/js/download.min.js"></script>
+  <link rel="stylesheet" href="/static/css/download.min.css">
+  <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Harbour</title>
 </head>
 
 <body>
-    <header class="header">
-        <div class="header__welcome">
-            <h2 class="header__welcome_text">Welcome to the Book Harbour, {{username}}.</h2>
-        </div>
-<!--        If the user is not admin -> show this one: -->
-<!--        <div class="header__upload">-->
-<!--            <h2 class="header__upload_text">Request materials.</h2>-->
-<!--        </div>-->
+<header class="header">
+  <div class="header__welcome">
+    <h2 class="header__welcome_text">Welcome to the Book Harbour, {{username}}.</h2>
+  </div>
+  <!--        If the user is not admin -> show this one: -->
+  {% if user_role != 'admin' %}
+  <div class="header__upload">
+    <h2 class="header__upload_text">Request materials.</h2>
+  </div>
+  <!--        If the user is admin -> show this one: -->
+  {% else %}
+  <div class="header__upload">
+    <h2 class="header__upload_text">Requested materials.</h2>
+  </div>
+  {% endif %}
 
-<!--        If the user is admin -> show this one: -->
-        <div class="header__upload">
-            <h2 class="header__upload_text">Requested materials.</h2>
-        </div>
-
-    </header>
-    <main class="main">
-        <sidebar class="main__sidebar">
-            <div class="main__sidebar__search">
-                <p class="main__sidebar__search_desctiption">Search:</p>
-                <input type="search" class="main__sidebar__search_input" />
-            </div>
-            <div class="main__sidebar__categories">
-                <p class="main__sidebar__categories_desctiption">Choose from:</p>
-                <select class="main__sidebar__categories_input" id="sidebar_category">
-                    <option value="subject">Subject</option>
-                    <option value="cnumber">Course</option>
-                </select>
-            </div>
-            <div class="main__sidebar__choose">
-                <div class="main__sidebar__choose_subject" id="sidebar_subjects">
-                    <ul>
-                        <li class="choose_category">Mathematics</li>
-                        <li class="choose_category">Software Engineering</li>
-                        <li class="choose_category">Data Science</li>
-                        <li class="choose_category">Computer Science</li>
-                    </ul>
-                </div>
-                <div class="main__sidebar__choose_course" id="sidebar_courses">
-                    <ul>
-                        <li class="choose_category">Calculus</li>
-                        <li class="choose_category">Probability and Statistics</li>
-                        <li class="choose_category">Computer Architecture</li>
-                        <li class="choose_category">Operating Systems</li>
-                        <li class="choose_category">Computer Networks</li>
-                        <li class="choose_category">Philosophy</li>
-                        <li class="choose_category">Data Modelling and Databases</li>
-                        <li class="choose_category">Digital Signal Processing</li>
-                    </ul>
-                </div>
-            </div>
-        </sidebar>
-        <div class="main__content">
-            {% for book in books %} {% set id = book['_id'] %} {% set title = book['title'] %} {% set description = book['description'] %} {% set img = book['img'] %} {% set filename = book['filename'] %} {% set filepath = "/static/books/" + filename%}
-
-            <article class="main__content__article" id="{{id}}">
-                <div class="main__content__article_wrapper">
-                    <img src="/static/books/covers/{{img}}" alt="" class="main__content__article__image">
-                    <h1 class="main__content__article__header">{{title}}</h1>
-                    <div class="main__content__article__description">
-                        {{description}}
-                    </div>
-                </div>
-                <div class="main__content__article__buttons">
-                    <a class="main__content__article__download" href="{{filepath}}" download="{{filename}}">Download</a>
-                </div>
-            </article>
-            {% endfor %}
-
-            <article class="main__content__article_rules" id="main__content__article_rules">
-                <div class="main__content__article_wrapper">
-                    <h1 class="main__content__article__header">The Library Pirate Code</h1>
-                    <div class="main__content__article__description">
-                        <p style="text-indent: 1em">This is Pirate Code: set of rules of Book Harbour. Following this rules will lead you to successful contribution to our website.
-                            Important: this rules should be followed by contributors only, if you use website and don’t contribute you are allowed not to read this.
-
-                        </p>
-                        <br>
-                        <p style="text-indent: 1em">
-                            When you try to Contribute to our project, you create an upload request, which is not necessarily will be accepted by administrator, it can also be declined in case if you do not follow next rules:
-                        </p>
-                        <div class="main__content__article__description_rules">
-                            <ul>
-                                <li>Our site is based on anonymous work, when you contribute to project, you are not allowed to specify your credentials, organization or something that can threat your anonymity.</li>
-                                <li>We do not accept descriptions or pictures that have potentially offensive to any group of people content.</li>
-                                <li>Materials uploaded to the site should match with their title and description, don’t waste time of people, who search for needed materials and find there something that doesn’t match their expectations.</li>
-                                <li>Don’t upload short versions of books: either full or nothing.</li>
-                                <li>(optional, but preferred) Add tags to your book, that will simplify search for the others.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <a class="download_rules" href="/static/howto/README.md" download="README.md">How to Use</a>
-                </div>
-
-            </article>
-
-<!--            If the user is not admin, show this:-->
-
-<!--            <article class="main__content__article_upload_request">-->
-<!--                <form enctype="multipart/form-data" method="post" action="{{url_for('request.upload_request')}}" , class="main__content__article_upload_request_form">-->
-<!--                    <div class="main__content__article_upload__input">-->
-<!--                        <div class="main__content__article_upload__input_wrapper">-->
-<!--                            <p>Book name</p>-->
-<!--                            <input name="title" type="text" required>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="main__content__article_upload__buttons">-->
-<!--                        <button type="submit" value="upload" class="main__content__article_upload__download">Request</button>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </article>-->
-            <article class="main__content__article_upload_request">
-                <form enctype="multipart/form-data" method="post" action="{{url_for('request.upload_request')}}" , class="main__content__article_upload_request_form">
-                    <div class="main__content__article_upload__input">
-                        <div class="main__content__article_upload__input_wrapper">
-                            <p>Book name</p>
-                            <input name="title" type="text" required>
-                        </div>
-                    </div>
-                    <div class="main__content__article_upload__buttons">
-                        <button type="submit" value="upload" class="main__content__article_upload__download">Request</button>
-                    </div>
-                </form>
-            </article>
-
-<!--            If the user is admin, show this: -->
-            <article class="main__content__article_upload_request" id="article_requests">
-                <h1 class="main__content__article__header">Requested Books</h1>
-                <ul class="list_of_requests" id="list_of_requests">
-                    {% for request in requests %}
-                    {% set title = request['title'] %}
-                    {% set id = request['_id'] %}
-                    <li><p>{{title}}</p> <p hidden>{{id}}</p> <button class="main__content__article_upload_newTag delete_request" >Delete</button></li>
-                    {% endfor %}
-                </ul>
-            </article>
-
-<!--            Do not touch everything after this line: -->
-
-            <article class="main__content__article_upload" id="two">
-                <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('store.upload_file')}}" , class="main__content__article_upload_form">
-                    <div class="main__content__article_upload__input">
-                        <div class="main__content__article_upload__input_wrapper">
-                            <p>Book name</p>
-                            <input name="title" type="text" required>
-                        </div>
-                        <div class="main__content__article_upload__input_wrapper">
-                            <p>Subject Tag: </p>
-                            <select name='subject_tag' class="main__sidebar__choose_subject">
-                                <option value="Mathematics">Mathematics</option>
-                                <option value="SoftwareEngineering">Software Engineering</option>
-                                <option value="DataScience">Data Science</option>
-                                <option value="ComputerScience">Computer Science</option>
-                            </select>
-                        </div>
-                        <div class="main__content__article_upload__input_wrapper" id="tags_one">
-                            <p>Course Tag (I): </p>
-                            <div class="main__content__article_select">
-                                <select name='course_tag1' class="main__sidebar__choose_subject">
-                                    <option value="Calculus">Calculus</option>
-                                    <option value="ProbabilityAndStatistics">Probability and Statistics</option>
-                                    <option value="ComputerArchitecture">Computer Architecture</option>
-                                    <option value="OperatingSystems">Operating Systems</option>
-                                    <option value="ComputerNetworks">Computer Networks</option>
-                                    <option value="Philosophy">Philosophy</option>
-                                    <option value="Calculus">Calculus</option>
-                                    <option value="Data ModellingAndDatabases">Data Modelling and Databases</option>
-                                    <option value="DigitalSignalProcessing">Digital Signal Processing</option>
-                                </select>
-                                <button class="main__content__article_upload_newTag" id="newTag_one">Add new tag</button>
-                            </div>
-                        </div>
-                        <div class="main__content__article_upload__input_wrapper">
-                            <p>Book description</p>
-                            <textarea name="description" rows="4" cols="50"></textarea>
-                        </div>
-                        <div class="main__content__article_upload__input_wrapper">
-                            <p>Book file</p>
-                            <input name="file" type="file" id="file" class="inputfile" required>
-                            <label for="file" id='file_label'>Choose file</label>
-                        </div>
-                        <div class="main__content__article_upload__input_wrapper">
-                            <p>Book Image</p>
-                            <input name="file_picture" type="file" id="file_picture" class="inputfile">
-                            <label for="file_picture" id='file_picture_label'>Choose file</label>
-                        </div>
-                    </div>
-                    <div class="main__content__article_upload__buttons">
-                        <button type="submit" value="upload" class="main__content__article_upload__download">Upload</button>
-                    </div>
-                </form>
-            </article>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="footer__rules">
-            <h2 class="footer__rules_text">Usage rules.</h2>
-        </div>
-        <div class="footer__upload">
-            <h2 class="footer__upload_text">Contribute to the project.</h2>
-        </div>
-    </footer>
-    <div id="hider"></div>
-    <div id="no_support">
-        <h1>Sorry, we do not support devices with screen size less than 1680 x 1050</h1>
+</header>
+<main class="main">
+  <sidebar class="main__sidebar">
+    <div class="main__sidebar__search">
+      <p class="main__sidebar__search_desctiption">Search:</p>
+      <input type="search" class="main__sidebar__search_input"/>
     </div>
+    <div class="main__sidebar__categories">
+      <p class="main__sidebar__categories_desctiption">Choose from:</p>
+      <select class="main__sidebar__categories_input" id="sidebar_category">
+        <option value="subject">Subject</option>
+        <option value="cnumber">Course</option>
+      </select>
+    </div>
+    <div class="main__sidebar__choose">
+      <div class="main__sidebar__choose_subject" id="sidebar_subjects">
+        <ul>
+          <li class="choose_category">Mathematics</li>
+          <li class="choose_category">Software Engineering</li>
+          <li class="choose_category">Data Science</li>
+          <li class="choose_category">Computer Science</li>
+        </ul>
+      </div>
+      <div class="main__sidebar__choose_course" id="sidebar_courses">
+        <ul>
+          <li class="choose_category">Calculus</li>
+          <li class="choose_category">Probability and Statistics</li>
+          <li class="choose_category">Computer Architecture</li>
+          <li class="choose_category">Operating Systems</li>
+          <li class="choose_category">Computer Networks</li>
+          <li class="choose_category">Philosophy</li>
+          <li class="choose_category">Data Modelling and Databases</li>
+          <li class="choose_category">Digital Signal Processing</li>
+        </ul>
+      </div>
+    </div>
+  </sidebar>
+  <div class="main__content">
+    {% for book in books %} {% set id = book['_id'] %} {% set title = book['title'] %} {% set description = book['description'] %} {% set img = book['img'] %} {% set filename = book['filename'] %} {%
+    set filepath = "/static/books/" + filename%}
+
+    <article class="main__content__article" id="{{id}}">
+      <div class="main__content__article_wrapper">
+        <img src="/static/books/covers/{{img}}" alt="" class="main__content__article__image">
+        <h1 class="main__content__article__header">{{title}}</h1>
+        <div class="main__content__article__description">
+          {{description}}
+        </div>
+      </div>
+      <div class="main__content__article__buttons">
+        <a class="main__content__article__download" href="{{filepath}}" download="{{filename}}">Download</a>
+      </div>
+    </article>
+    {% endfor %}
+
+    <article class="main__content__article_rules" id="main__content__article_rules">
+      <div class="main__content__article_wrapper">
+        <h1 class="main__content__article__header">The Library Pirate Code</h1>
+        <div class="main__content__article__description">
+          <p style="text-indent: 1em">This is Pirate Code: set of rules of Book Harbour. Following this rules will lead you to successful contribution to our website.
+            Important: this rules should be followed by contributors only, if you use website and don’t contribute you are allowed not to read this.
+
+          </p>
+          <br>
+          <p style="text-indent: 1em">
+            When you try to Contribute to our project, you create an upload request, which is not necessarily will be accepted by administrator, it can also be declined in case if you do not follow
+            next rules:
+          </p>
+          <div class="main__content__article__description_rules">
+            <ul>
+              <li>Our site is based on anonymous work, when you contribute to project, you are not allowed to specify your credentials, organization or something that can threat your anonymity.</li>
+              <li>We do not accept descriptions or pictures that have potentially offensive to any group of people content.</li>
+              <li>Materials uploaded to the site should match with their title and description, don’t waste time of people, who search for needed materials and find there something that doesn’t match
+                their expectations.
+              </li>
+              <li>Don’t upload short versions of books: either full or nothing.</li>
+              <li>(optional, but preferred) Add tags to your book, that will simplify search for the others.</li>
+            </ul>
+          </div>
+        </div>
+        <a class="download_rules" href="/static/howto/README.md" download="README.md">How to Use</a>
+      </div>
+
+    </article>
+
+    <!--            If the user is not admin, show this:-->
+    {% if user_role != 'admin' %}
+    <article class="main__content__article_upload_request">
+      <form enctype="multipart/form-data" method="post" action="{{url_for('request.upload_request')}}" , class="main__content__article_upload_request_form">
+        <div class="main__content__article_upload__input">
+          <div class="main__content__article_upload__input_wrapper">
+            <p>Book name</p>
+            <input name="title" type="text" required>
+          </div>
+        </div>
+        <div class="main__content__article_upload__buttons">
+          <button type="submit" value="upload" class="main__content__article_upload__download">Request</button>
+        </div>
+      </form>
+    </article>
+    {% else %}
+    <!--            If the user is admin, show this: -->
+    <article class="main__content__article_upload_request" id="article_requests">
+      <h1 class="main__content__article__header">Requested Books</h1>
+      <ul class="list_of_requests" id="list_of_requests">
+        {% for request in requests %}
+        {% set title = request['title'] %}
+        {% set id = request['_id'] %}
+        <li><p>{{title}}</p>
+          <p hidden>{{id}}</p>
+          <button class="main__content__article_upload_newTag delete_request">Delete</button>
+        </li>
+        {% endfor %}
+      </ul>
+    </article>
+    {% endif %}
+    <!--            Do not touch everything after this line: -->
+
+    <article class="main__content__article_upload" id="two">
+      <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('store.upload_file')}}" , class="main__content__article_upload_form">
+        <div class="main__content__article_upload__input">
+          <div class="main__content__article_upload__input_wrapper">
+            <p>Book name</p>
+            <input name="title" type="text" required>
+          </div>
+          <div class="main__content__article_upload__input_wrapper">
+            <p>Subject Tag: </p>
+            <select name='subject_tag' class="main__sidebar__choose_subject">
+              <option value="Mathematics">Mathematics</option>
+              <option value="SoftwareEngineering">Software Engineering</option>
+              <option value="DataScience">Data Science</option>
+              <option value="ComputerScience">Computer Science</option>
+            </select>
+          </div>
+          <div class="main__content__article_upload__input_wrapper" id="tags_one">
+            <p>Course Tag (I): </p>
+            <div class="main__content__article_select">
+              <select name='course_tag1' class="main__sidebar__choose_subject">
+                <option value="Calculus">Calculus</option>
+                <option value="ProbabilityAndStatistics">Probability and Statistics</option>
+                <option value="ComputerArchitecture">Computer Architecture</option>
+                <option value="OperatingSystems">Operating Systems</option>
+                <option value="ComputerNetworks">Computer Networks</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="Calculus">Calculus</option>
+                <option value="Data ModellingAndDatabases">Data Modelling and Databases</option>
+                <option value="DigitalSignalProcessing">Digital Signal Processing</option>
+              </select>
+              <button class="main__content__article_upload_newTag" id="newTag_one">Add new tag</button>
+            </div>
+          </div>
+          <div class="main__content__article_upload__input_wrapper">
+            <p>Book description</p>
+            <textarea name="description" rows="4" cols="50"></textarea>
+          </div>
+          <div class="main__content__article_upload__input_wrapper">
+            <p>Book file</p>
+            <input name="file" type="file" id="file" class="inputfile" required>
+            <label for="file" id='file_label'>Choose file</label>
+          </div>
+          <div class="main__content__article_upload__input_wrapper">
+            <p>Book Image</p>
+            <input name="file_picture" type="file" id="file_picture" class="inputfile">
+            <label for="file_picture" id='file_picture_label'>Choose file</label>
+          </div>
+        </div>
+        <div class="main__content__article_upload__buttons">
+          <button type="submit" value="upload" class="main__content__article_upload__download">Upload</button>
+        </div>
+      </form>
+    </article>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer__rules">
+    <h2 class="footer__rules_text">Usage rules.</h2>
+  </div>
+  <div class="footer__upload">
+    <h2 class="footer__upload_text">Contribute to the project.</h2>
+  </div>
+</footer>
+<div id="hider"></div>
+<div id="no_support">
+  <h1>Sorry, we do not support devices with screen size less than 1680 x 1050</h1>
+</div>
 </body>
 
 </html>
