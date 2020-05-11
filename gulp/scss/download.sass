@@ -84,6 +84,7 @@ body
         text-align: right
         display: flex
         justify-content: space-between
+        align-items: center
 
         &_text, &_text_approval
             cursor: pointer
@@ -516,3 +517,26 @@ select
         &:hover
             cursor: pointer
             background-color: rgba($accent-color, 0.9)
+
+
+.logout
+    text-decoration: none
+    color: rgba($primary-color-text, 0.7)
+    transition: color 0.2s ease
+    display: inline-block
+
+    &:hover
+        text-decoration: underline
+        color: rgba($primary-color-text, 0)
+
+
+        &:before
+            content: attr(data-hover)
+            color: rgba($primary-color-text, 1)
+            animation: logout 0.2s ease
+
+@keyframes logout
+    0%
+        font-size: 0
+    100%
+        font-size: 100%

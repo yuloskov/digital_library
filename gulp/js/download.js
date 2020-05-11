@@ -160,7 +160,6 @@ $(document).ready(function() {
         $(articles).detach();
         articles = null;
         number_of_articles = 0;
-
         // change to_approve on url of handler which will return articles to be approved
         $.post('/to_approve', {
             data: $(e.target).text().replace(/\s/g, '')

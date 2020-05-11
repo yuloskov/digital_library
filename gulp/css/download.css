@@ -87,6 +87,7 @@ body {
   text-align: right;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header__upload_text, .header__upload_text_approval, .footer__upload_text, .footer__upload_text_approval {
@@ -571,4 +572,41 @@ select option:disabled {
 .approve .approve_btn:hover {
   cursor: pointer;
   background-color: rgba(250, 65, 76, 0.9);
+}
+
+.logout {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.logout:hover {
+  text-decoration: underline;
+  color: rgba(255, 255, 255, 0);
+}
+
+.logout:hover:before {
+  content: attr(data-hover);
+  color: white;
+  -webkit-animation: logout 0.2s ease;
+  animation: logout 0.2s ease;
+}
+
+@-webkit-keyframes logout {
+  0% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 100%;
+  }
+}
+
+@keyframes logout {
+  0% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 100%;
+  }
 }
