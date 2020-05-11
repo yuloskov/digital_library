@@ -71,21 +71,61 @@ $(document).ready(function() {
 
     search_input.on('keypress', (e) => {
         if (e.which === 13 && $(search_input).val().length !== 0){
-
-            $(articles).detach();
-            articles = null;
-            number_of_articles = 0;
-
-
-            // change search_article on url of handler
-
             $.post('/search_article', {
                 data: search_input.val()
             }, (result) => {
+                if (Object.keys(result).length !== 0){
+                    $(articles).detach();
+                    articles = null;
+                    number_of_articles = 0;
+                    let full_content = "";
+                    for (let i in result){
+                        let content = "<article class=\"main__content__article\" id=\"" + result[i]._id + "\">\n" +
+                            "<div class=\"main__content__article_wrapper\">\n";
+
+                        content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
+                        content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
+                        content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
+                        content += "</div>\n";
+                        content += "<div class=\"main__content__article__buttons\">\n" +
+                            "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n" + "</div>\n"
+                        content += "<h3 class=\"main__content__article__pageNum\"></h3>";
+                        content += "</article>";
+
+                        full_content += content;
+                    }
+                    $(main_content).append(full_content);
+                    articles = $(".main__content__article");
+                    number_of_articles = articles.length;
+                    $(articles).fadeOut(0);
+                    $(articles[0]).fadeIn(0);
+                    current_article = 0;
+                    $(".main__content").bind('mousewheel', mousewheel_articles);
+                    let article_numbers = $('.main__content__article__pageNum');
+                    $.each(article_numbers, (ind, obj) => {
+                        $(obj).html(ind + 1 + " / " + article_numbers.length);
+                    });
+                }else {
+                    alert("Nothing Found");
+                }
+            });
+        }
+    });
+
+
+    let category_choose = $(".choose_category");
+    category_choose.on('click', (e) => {
+        $.post('/choose_article', {
+            data: $(e.target).text().replace(/\s/g, '')
+        }, (result) => {
+            if (Object.keys(result).length !== 0){
+                $(articles).detach();
+                articles = null;
+                number_of_articles = 0;
                 let full_content = "";
                 for (let i in result){
                     let content = "<article class=\"main__content__article\" id=\"" + result[i]._id + "\">\n" +
-                                  "<div class=\"main__content__article_wrapper\">\n";
+                        "<div class=\"main__content__article_wrapper\">\n";
 
                     content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
                     content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
@@ -109,111 +149,75 @@ $(document).ready(function() {
                 $.each(article_numbers, (ind, obj) => {
                     $(obj).html(ind + 1 + " / " + article_numbers.length);
                 });
-            });
-        }
-    });
-
-
-    let category_choose = $(".choose_category");
-    category_choose.on('click', (e) => {
-        $(articles).detach();
-        articles = null;
-        number_of_articles = 0;
-
-        // change choose_article on url of handler
-        $.post('/choose_article', {
-            data: $(e.target).text().replace(/\s/g, '')
-        }, (result) => {
-            let full_content = "";
-            for (let i in result){
-                let content = "<article class=\"main__content__article\" id=\"" + result[i]._id + "\">\n" +
-                    "<div class=\"main__content__article_wrapper\">\n";
-
-                content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
-                content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
-                content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
-                content += "</div>\n";
-                content += "<div class=\"main__content__article__buttons\">\n" +
-                    "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n" + "</div>\n"
-                content += "<h3 class=\"main__content__article__pageNum\"></h3>";
-                content += "</article>";
-
-                full_content += content;
+            }else {
+                alert("Nothing Found");
             }
-            $(main_content).append(full_content);
-            articles = $(".main__content__article");
-            number_of_articles = articles.length;
-            $(articles).fadeOut(0);
-            $(articles[0]).fadeIn(0);
-            current_article = 0;
-            $(".main__content").bind('mousewheel', mousewheel_articles);
-            let article_numbers = $('.main__content__article__pageNum');
-            $.each(article_numbers, (ind, obj) => {
-                $(obj).html(ind + 1 + " / " + article_numbers.length);
-            });
         });
     });
 
     // Show Uploaded Materials
     let show_uploaded = $(".header__upload_text_approval");
     show_uploaded.on('click', (e) => {
-        $(articles).detach();
-        articles = null;
-        number_of_articles = 0;
         // change to_approve on url of handler which will return articles to be approved
         $.get('/to_approve', {
             data: $(e.target).text().replace(/\s/g, '')
         }, (result) => {
-            let full_content = "";
-            for (let i in result){
-                let content = "<article class=\"main__content__article\" id=\"" + result[i]._id + "\">\n" +
-                    "<div class=\"main__content__article_wrapper\">\n";
+            if (Object.keys(result).length !== 0){
 
-                content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
-                content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
-                content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
-                content += "<div hidden>" + result[i]._id + "</div>\n"
-                content += "</div>\n";
-                content += "<div class=\"main__content__article__buttons\">\n" +
-                    "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n";
-                content += "<div class=\"approve\">\n" +
-                    "          <p href=\"\" class=\"main__content__article__download approve_btn\">Approve</p>\n" +
-                    "          <p href=\"\" class=\"main__content__article__download approve_btn\">Decline</p>\n" +
-                    "        </div>"
-                content += "</div>\n";
-                content += "<h3 class=\"main__content__article__pageNum\"></h3>";
-                content += "</article>";
+                $(articles).detach();
+                articles = null;
+                number_of_articles = 0;
+                let full_content = "";
+                for (let i in result){
+                    let content = "<article class=\"main__content__article\" id=\"" + result[i]._id + "\">\n" +
+                        "<div class=\"main__content__article_wrapper\">\n";
 
-                full_content += content;
-            }
-            $(main_content).append(full_content);
-            articles = $(".main__content__article");
-            number_of_articles = articles.length;
-            $(articles).fadeOut(0);
-            $(articles[0]).fadeIn(0);
-            current_article = 0;
-            $(".main__content").bind('mousewheel', mousewheel_articles);
-            let article_numbers = $('.main__content__article__pageNum');
-            $.each(article_numbers, (ind, obj) => {
-                $(obj).html(ind + 1 + " / " + article_numbers.length);
-            });
-            let approve_buttons = $(".approve_btn");
-            approve_buttons.on("click", (e) => {
-                let action = $(e.target).html();
-                let article_id = $($($(e.target).parent().parent().parent().children()[0]).children()[3]).html();
-                $(e.target).parent().parent().parent().html(
-                    "<h1 class='main__content__article__header' style='text-align: center'> " + action + "d </h1>"
-                );
-                // Change /approvals here to the URL of approvals handler (which will handle action of approval/decline)
-                $.post("/approvals", {
-                    action: action,
-                    article_id: article_id,
+                    content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
+                    content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
+                    content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
+                    content += "<div hidden>" + result[i]._id + "</div>\n"
+                    content += "</div>\n";
+                    content += "<div class=\"main__content__article__buttons\">\n" +
+                        "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n";
+                    content += "<div class=\"approve\">\n" +
+                        "          <p href=\"\" class=\"main__content__article__download approve_btn\">Approve</p>\n" +
+                        "          <p href=\"\" class=\"main__content__article__download approve_btn\">Decline</p>\n" +
+                        "        </div>"
+                    content += "</div>\n";
+                    content += "<h3 class=\"main__content__article__pageNum\"></h3>";
+                    content += "</article>";
+
+                    full_content += content;
+                }
+                $(main_content).append(full_content);
+                articles = $(".main__content__article");
+                number_of_articles = articles.length;
+                $(articles).fadeOut(0);
+                $(articles[0]).fadeIn(0);
+                current_article = 0;
+                $(".main__content").bind('mousewheel', mousewheel_articles);
+                let article_numbers = $('.main__content__article__pageNum');
+                $.each(article_numbers, (ind, obj) => {
+                    $(obj).html(ind + 1 + " / " + article_numbers.length);
                 });
-            });
+                let approve_buttons = $(".approve_btn");
+                approve_buttons.on("click", (e) => {
+                    let action = $(e.target).html();
+                    let article_id = $($($(e.target).parent().parent().parent().children()[0]).children()[3]).html();
+                    $(e.target).parent().parent().parent().html(
+                        "<h1 class='main__content__article__header' style='text-align: center'> " + action + "d </h1>"
+                    );
+                    // Change /approvals here to the URL of approvals handler (which will handle action of approval/decline)
+                    $.post("/approvals", {
+                        action: action,
+                        article_id: article_id,
+                    });
+                });
+            } else {
+                alert("Nothing Found");
+            }
         });
     });
-
-
 
     // Show Articles
 

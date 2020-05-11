@@ -578,35 +578,39 @@ select option:disabled {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.7);
   transition: color 0.2s ease;
-  display: inline-block;
 }
 
 .logout:hover {
-  text-decoration: underline;
   color: rgba(255, 255, 255, 0);
 }
 
 .logout:hover:before {
+  text-decoration: underline;
   content: attr(data-hover);
   color: white;
+  font-size: 100%;
   -webkit-animation: logout 0.2s ease;
   animation: logout 0.2s ease;
 }
 
 @-webkit-keyframes logout {
   0% {
-    font-size: 0;
+    color: rgba(255, 255, 255, 0);
+    font-size: 0%;
   }
   100% {
+    color: white;
     font-size: 100%;
   }
 }
 
 @keyframes logout {
   0% {
-    font-size: 0;
+    color: rgba(255, 255, 255, 0);
+    font-size: 0%;
   }
   100% {
+    color: white;
     font-size: 100%;
   }
 }
