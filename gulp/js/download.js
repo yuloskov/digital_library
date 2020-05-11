@@ -158,7 +158,7 @@ $(document).ready(function() {
     $(new_tag_button).on("click", () => {
             $(" <div class=\"main__content__article_upload__input_wrapper\" id='tags_two'>\n" +
                 "<p>Course Tag (II): </p>\n" +
-                "<div  class=\"main__content__article_select\"><select class=\"main__sidebar__choose_subject\">\n" +
+                "<div  class=\"main__content__article_select\"><select name='course_tag2' class=\"main__sidebar__choose_subject\">\n" +
                 "<option value=\"Calculus\">Calculus</option>\n" +
                 "<option value=\"ProbabilityAndStatistics\">Probability and Statistics</option>\n" +
                 "<option value=\"ComputerArchitecture\">Computer Architecture</option>\n" +
@@ -176,7 +176,7 @@ $(document).ready(function() {
             new_tag_button.on("click", () => {
                 $(" <div class=\"main__content__article_upload__input_wrapper\" id='tags_three'>\n" +
                     "<p>Course Tag (III): </p>\n" +
-                    "<div  class=\"main__content__article_select\"><select class=\"main__sidebar__choose_subject\">\n" +
+                    "<div  class=\"main__content__article_select\"><select name='course_tag3' class=\"main__sidebar__choose_subject\">\n" +
                     "<option value=\"Calculus\">Calculus</option>\n" +
                     "<option value=\"ProbabilityAndStatistics\">Probability and Statistics</option>\n" +
                     "<option value=\"ComputerArchitecture\">Computer Architecture</option>\n" +

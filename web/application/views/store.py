@@ -78,7 +78,7 @@ def upload_file():
         'course_tag3': course_tag3,
         'approved': 'false',
     }
-
+    print(data)
     db_manager.insert_book(data)
 
     books_folder = '/var/books'

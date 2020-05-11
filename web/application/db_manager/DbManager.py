@@ -66,11 +66,19 @@ class Manager:
             '$regex': f'.*{tag}.*',
             '$options': 'i',
         }}))
-        course_books = list(self.db.books.find({"course_tag": {
+        course_books1 = list(self.db.books.find({"course_tag1": {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
         }}))
-        books = subject_books + course_books
+        course_books2 = list(self.db.books.find({"course_tag2": {
+            '$regex': f'.*{tag}.*',
+            '$options': 'i',
+        }}))
+        course_books3 = list(self.db.books.find({"course_tag3": {
+            '$regex': f'.*{tag}.*',
+            '$options': 'i',
+        }}))
+        books = subject_books + course_books1 + course_books2 + course_books3
         return books
 
     def insert_book(self, data):
