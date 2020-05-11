@@ -6,7 +6,7 @@ from flask import (
     url_for,
     render_template,
 )
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application.db_manager import DbManager
 
@@ -23,6 +23,7 @@ def download():
         'download.html',
         books=books,
         requests=requests,
+        username=current_user.id
     )
 
 
@@ -78,7 +79,6 @@ def upload_file():
         'course_tag3': course_tag3,
         'approved': 'false',
     }
-    print(data)
     db_manager.insert_book(data)
 
     books_folder = '/var/books'
