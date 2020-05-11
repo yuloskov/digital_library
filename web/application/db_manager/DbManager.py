@@ -62,26 +62,26 @@ class Manager:
         books = list(self.db.books.find({'title': {
             '$regex': f'.*{title}.*',
             '$options': 'i',
-        }}))
+        }, 'approved': 'true'}))
         return books
 
     def get_books_by_tag(self, tag):
         subject_books = list(self.db.books.find({'subject_tag': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
-        }}))
+        }, 'approved': 'true'}))
         course_books1 = list(self.db.books.find({'course_tag1': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
-        }}))
+        }, 'approved': 'true'}))
         course_books2 = list(self.db.books.find({'course_tag2': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
-        }}))
+        }, 'approved': 'true'}))
         course_books3 = list(self.db.books.find({'course_tag3': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
-        }}))
+        }, 'approved': 'true'}))
         books = subject_books + course_books1 + course_books2 + course_books3
         return books
 
