@@ -1,9 +1,6 @@
 from flask import (
     Blueprint,
     request,
-    redirect,
-    url_for,
-    render_template,
 )
 from flask_login import login_required, current_user
 
@@ -50,6 +47,9 @@ def approvals():
     if 'article_id' in request.form:
         article_id = request.form['article_id']
 
-    db_manager.approve_article(article_id)
+    if action == 'Approve':
+        db_manager.approve_article(article_id)
+    elif action == 'Decline':
+        db_manager.delete_article(article_id)
 
     return {}

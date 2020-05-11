@@ -12,7 +12,7 @@ class Manager:
         self.db = self.client['db']
 
     def hash_password(self, password):
-        '''Hash a password for storing.'''
+        """Hash a password for storing."""
         salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
         pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'),
                                       salt, 100000)
@@ -21,7 +21,7 @@ class Manager:
 
     # check hash of a password with a password in database
     def verify_password(self, stored_password, provided_password):
-        '''Verify a stored password against one provided by user'''
+        """Verify a stored password against one provided by user"""
         salt = stored_password[:64]
         stored_password = stored_password[64:]
         pwdhash = hashlib.pbkdf2_hmac('sha512',
@@ -111,6 +111,10 @@ class Manager:
             {'_id': article_id},
             {'$set': {'approved': 'true'}},
         )
+
+    def delete_article(self, article_id):
+        article_id = ObjectId(article_id)
+        self.db.books.delete_one({'_id': article_id})
 
     def get_requests(self):
         requests = list(self.db.upload_requests.find({}))
