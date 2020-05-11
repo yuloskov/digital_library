@@ -51,7 +51,11 @@ class Manager:
         return record
 
     def get_list_of_books(self):
-        books = list(self.db.books.find({}))
+        books = list(self.db.books.find({'approved': 'true'}))
+        return books
+
+    def get_list_of_books_to_approve(self):
+        books = list(self.db.books.find({'approved': 'false'}))
         return books
 
     def get_books_by_title(self, title):
@@ -82,7 +86,7 @@ class Manager:
         return books
 
     def insert_book(self, data):
-        '''
+        """
         Inserts the book ar article into the database.
 
         :param data: dict
@@ -98,8 +102,15 @@ class Manager:
                 'course_tag3', *optional
                 'approved',
                 }
-        '''
+        """
         self.db.books.insert_one(data)
+
+    def approve_article(self, article_id):
+        article_id = ObjectId(article_id)
+        self.db.books.update_one(
+            {'_id': article_id},
+            {'$set': {'approved': 'true'}},
+        )
 
     def get_requests(self):
         requests = list(self.db.upload_requests.find({}))

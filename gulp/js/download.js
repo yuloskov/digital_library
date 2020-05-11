@@ -161,7 +161,7 @@ $(document).ready(function() {
         articles = null;
         number_of_articles = 0;
         // change to_approve on url of handler which will return articles to be approved
-        $.post('/to_approve', {
+        $.get('/to_approve', {
             data: $(e.target).text().replace(/\s/g, '')
         }, (result) => {
             let full_content = "";
@@ -172,6 +172,7 @@ $(document).ready(function() {
                 content += result[i].img === undefined ? '' : "<img src=\"/static/books/covers/" + result[i].img + "\" alt=\"\" class=\"main__content__article__image\">\n"
                 content += "<h1 class=\"main__content__article__header\">" + result[i].title + "</h1>\n";
                 content += result[i].description === undefined ? '' : "<div class=\"main__content__article__description\">\n" + result[i].description + "\n</div>\n"
+                content += "<div hidden>" + result[i]._id + "</div>\n"
                 content += "</div>\n";
                 content += "<div class=\"main__content__article__buttons\">\n" +
                     "<a class=\"main__content__article__download\" href=\"/static/books/" + result[i].filename + "\" download=\"" + result[i].filename + "\">Download</a>\n";
@@ -199,14 +200,14 @@ $(document).ready(function() {
             let approve_buttons = $(".approve_btn");
             approve_buttons.on("click", (e) => {
                 let action = $(e.target).html();
-                let article_name = $($($(e.target).parent().parent().parent().children()[0]).children()[1]).html();
+                let article_id = $($($(e.target).parent().parent().parent().children()[0]).children()[3]).html();
                 $(e.target).parent().parent().parent().html(
                     "<h1 class='main__content__article__header' style='text-align: center'> " + action + "d </h1>"
                 );
                 // Change /approvals here to the URL of approvals handler (which will handle action of approval/decline)
                 $.post("/approvals", {
                     action: action,
-                    article_name: article_name
+                    article_id: article_id,
                 });
             });
         });

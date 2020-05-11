@@ -44,12 +44,17 @@ def create_app(config=None):
 
     # Register all blueprints to the app
     from application.views import (
-        auth, article, request, store,
+        auth,
+        article,
+        request,
+        store,
+        approve,
     )
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(article.bp)
     app.register_blueprint(request.bp)
     app.register_blueprint(store.bp)
+    app.register_blueprint(approve.bp)
 
     return app
