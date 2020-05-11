@@ -85,10 +85,16 @@ body {
   padding-right: 2.5%;
   padding-left: 5%;
   text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
-.header__upload_text, .footer__upload_text {
+.header__upload_text, .header__upload_text_approval, .footer__upload_text, .footer__upload_text_approval {
   cursor: pointer;
+}
+
+.header__upload_text_contr, .footer__upload_text_contr {
+  margin-left: auto;
 }
 
 #main__content__article_rules:hover {
@@ -226,6 +232,12 @@ select option:disabled {
   border-radius: 15px;
   font-size: 1.3em;
   min-height: 95%;
+}
+
+.main__content__article__pageNum, .main__content__article_rules__pageNum {
+  text-align: center;
+  font-weight: 300;
+  margin-top: auto;
 }
 
 .main__content__article_select, .main__content__article_rules_select {
@@ -457,9 +469,8 @@ select option:disabled {
 
 .download_rules {
   width: 400px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin: 1% 5% 1% auto;
+  padding: 20px 20px;
+  margin: 2% 2% 2% 2%;
   color: #FFFFFF;
   font-size: 1.7em;
   background-color: rgba(250, 65, 76, 0.5);
@@ -534,4 +545,30 @@ select option:disabled {
   color: #FA414C;
   background-color: rgba(255, 255, 255, 0.6);
   text-shadow: none;
+}
+
+.main__content__article_wrapper img {
+  max-height: 45vh !important;
+}
+
+.approve {
+  margin: 2% 0 0 0;
+}
+
+.approve .approve_btn {
+  display: inline-block;
+  padding: 2% !important;
+  height: 100% !important;
+  color: #FFFFFF;
+  font-size: 1.7em;
+  background-color: rgba(250, 65, 76, 0.5);
+  border: none;
+  transition: 0.25s all ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.approve .approve_btn:hover {
+  cursor: pointer;
+  background-color: rgba(250, 65, 76, 0.9);
 }

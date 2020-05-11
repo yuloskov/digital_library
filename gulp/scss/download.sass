@@ -82,9 +82,14 @@ body
         padding-right: 2.5%
         padding-left: 5%
         text-align: right
+        display: flex
+        justify-content: space-between
 
-        &_text
+        &_text, &_text_approval
             cursor: pointer
+
+        &_text_contr
+            margin-left: auto
 
     //@media screen and (max-width: 1679px), screen and (max-height: 1049px)
     //    display: none
@@ -211,6 +216,11 @@ select
             border-radius: 15px
             font-size: 1.3em
             min-height: 95%
+
+            &__pageNum
+                text-align: center
+                font-weight: 300
+                margin-top: auto
 
             &_select
                 width: 60%
@@ -413,9 +423,8 @@ select
 
 .download_rules
     width: 400px
-    padding-top: 20px
-    padding-bottom: 20px
-    margin: 1% 5% 1% auto
+    padding: 20px 20px
+    margin: 2% 2% 2% 2%
     color: $primary-color-text
     font-size: 1.7em
     background-color: rgba($accent-color, 0.5)
@@ -482,3 +491,28 @@ select
             color: $accent-color
             background-color: rgba($primary-color-text, 0.6)
             text-shadow: none
+
+
+.main__content__article_wrapper
+    img
+        max-height: 45vh !important
+
+
+.approve
+    margin: 2% 0 0 0
+
+    .approve_btn
+        display: inline-block
+        padding: 2% !important
+        height: 100% !important
+        color: $primary-color-text
+        font-size: 1.7em
+        background-color: rgba($accent-color, 0.5)
+        border: none
+        transition: 0.25s all ease
+        text-align: center
+        text-decoration: none
+
+        &:hover
+            cursor: pointer
+            background-color: rgba($accent-color, 0.9)
