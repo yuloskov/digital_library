@@ -6,8 +6,6 @@ from flask import (
     render_template,
 )
 
-from application.utils import DbManager
-
 from flask_login import (
     UserMixin,
     login_required,
@@ -15,6 +13,7 @@ from flask_login import (
     login_user,
     logout_user,
 )
+from application.db_manager import DbManager
 
 bp = Blueprint('auth', __name__)
 
@@ -31,20 +30,12 @@ def login():
     db_manager = DbManager.Manager()
 
     if current_user.is_authenticated:
-        return redirect(url_for('download.download'))
+        return redirect(url_for('store.download'))
 
     if request.method == 'GET':
         return render_template('login.html')
 
     login = request.form['login']
-
-    # user_password = db_manager.get_admins_password(login)
-    #
-    # if user_password is None:
-    #     return render_template(
-    #         'login.html',
-    #         message='Incorrect login or password',
-    #     )
 
     match = db_manager.check_validity(
         login,
@@ -54,7 +45,7 @@ def login():
         user = UserMixin()
         user.id = login
         login_user(user)
-        return redirect(url_for('download.download'))
+        return redirect(url_for('store.download'))
 
     return render_template(
         'login.html',

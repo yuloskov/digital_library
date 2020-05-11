@@ -1,12 +1,9 @@
 import os
 
-from flask import Flask, redirect, url_for, request
+from application.db_manager import DbManager
+
 from flask_login import LoginManager, UserMixin
-
-from application.utils import DbManager
-from pymongo import MongoClient
-from werkzeug.utils import secure_filename
-
+from flask import Flask, redirect, url_for
 
 
 def redirect_to_login():
@@ -46,15 +43,13 @@ def create_app(config=None):
         return user
 
     # Register all blueprints to the app
-    from application.views import auth, download, search_article, \
-        choose_article
-    from application.utils import upload, download_file, manage_requests
+    from application.views import (
+        auth, article, request, store,
+    )
 
     app.register_blueprint(auth.bp)
-    app.register_blueprint(download.bp)
-    app.register_blueprint(upload.bp)
-    app.register_blueprint(download_file.bp)
-    app.register_blueprint(search_article.bp)
-    app.register_blueprint(choose_article.bp)
-    app.register_blueprint(manage_requests.bp)
+    app.register_blueprint(article.bp)
+    app.register_blueprint(request.bp)
+    app.register_blueprint(store.bp)
+
     return app

@@ -122,6 +122,19 @@
 <!--                    </div>-->
 <!--                </form>-->
 <!--            </article>-->
+            <article class="main__content__article_upload_request">
+                <form enctype="multipart/form-data" method="post" action="{{url_for('request.upload_request')}}" , class="main__content__article_upload_request_form">
+                    <div class="main__content__article_upload__input">
+                        <div class="main__content__article_upload__input_wrapper">
+                            <p>Book name</p>
+                            <input name="title" type="text" required>
+                        </div>
+                    </div>
+                    <div class="main__content__article_upload__buttons">
+                        <button type="submit" value="upload" class="main__content__article_upload__download">Request</button>
+                    </div>
+                </form>
+            </article>
 
 <!--            If the user is admin, show this: -->
             <article class="main__content__article_upload_request" id="article_requests">
@@ -138,7 +151,7 @@
 <!--            Do not touch everything after this line: -->
 
             <article class="main__content__article_upload" id="two">
-                <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('upload.upload_file')}}" , class="main__content__article_upload_form">
+                <form id="uploadbanner" enctype="multipart/form-data" method="post" action="{{url_for('store.upload_file')}}" , class="main__content__article_upload_form">
                     <div class="main__content__article_upload__input">
                         <div class="main__content__article_upload__input_wrapper">
                             <p>Book name</p>

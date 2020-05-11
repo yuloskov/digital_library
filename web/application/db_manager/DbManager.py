@@ -1,10 +1,14 @@
+import os
+import hashlib
+import binascii
+
 from pymongo import MongoClient
-import hashlib, binascii, os
+from bson.objectid import ObjectId
 
 
-class Manager(object):
+class Manager:
     def __init__(self):
-        self.client = MongoClient('mongodb://db:27017/')
+        self.client = MongoClient(os.environ['DATABASE_URL'])
         self.db = self.client['db']
 
     def hash_password(self, password):
@@ -14,17 +18,6 @@ class Manager(object):
                                       salt, 100000)
         pwdhash = binascii.hexlify(pwdhash)
         return (salt + pwdhash).decode('ascii')
-
-    #
-    # insert user's login and password
-    def insert_user(self, login, password, role):
-        hashed_password = self.hash_password(password)
-        post = {"login": login, "password": hashed_password, "role": role}
-        self.db.posts.insert_one(post)
-
-    def get_user(self, login):
-        record = self.db.posts.find_one({"login": login})
-        return record
 
     # check hash of a password with a password in database
     def verify_password(self, stored_password, provided_password):
@@ -47,6 +40,15 @@ class Manager(object):
                                         provided_password=password)
         else:
             return False
+
+    def insert_user(self, login, password, role):
+        hashed_password = self.hash_password(password)
+        user = {"login": login, "password": hashed_password, "role": role}
+        self.db.users.insert_one(user)
+
+    def get_user(self, login):
+        record = self.db.users.find_one({"login": login})
+        return record
 
     def get_list_of_books(self):
         books = list(self.db.books.find({}))
@@ -71,6 +73,33 @@ class Manager(object):
         books = subject_books + course_books
         return books
 
+    def insert_book(self, data):
+        """
+        Inserts the book ar article into the database.
+
+        :param data: dict
+            Should have the following structure:
+                {
+                'title',
+                'description',
+                'filename'
+                'img',
+                'subject_tag',
+                'course_tag1',
+                'course_tag2', *optional
+                'course_tag3', *optional
+                'approved',
+                }
+        """
+        self.db.books.insert_one(data)
+
     def get_requests(self):
         requests = list(self.db.upload_requests.find({}))
         return requests
+
+    def upload_request(self, title):
+        self.db.upload_requests.insert_one({'title': title})
+
+    def delete_request(self, request_id):
+        request_id = ObjectId(request_id)
+        self.db.upload_requests.delete_one({'_id': request_id})
