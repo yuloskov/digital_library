@@ -19,11 +19,14 @@ def download():
     db_manager = DbManager.Manager()
     books = db_manager.get_list_of_books()
     requests = db_manager.get_requests()
+    user = db_manager.get_user(current_user.id)
+
     return render_template(
         'download.html',
         books=books,
         requests=requests,
-        username=current_user.id
+        username=user['login'],
+        user_role=user['role'],
     )
 
 

@@ -12,7 +12,7 @@ class Manager:
         self.db = self.client['db']
 
     def hash_password(self, password):
-        """Hash a password for storing."""
+        '''Hash a password for storing.'''
         salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
         pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'),
                                       salt, 100000)
@@ -21,7 +21,7 @@ class Manager:
 
     # check hash of a password with a password in database
     def verify_password(self, stored_password, provided_password):
-        """Verify a stored password against one provided by user"""
+        '''Verify a stored password against one provided by user'''
         salt = stored_password[:64]
         stored_password = stored_password[64:]
         pwdhash = hashlib.pbkdf2_hmac('sha512',
@@ -35,7 +35,7 @@ class Manager:
     def check_validity(self, login, password):
         user = self.get_user(login)
         if user:
-            stored_password = user["password"]
+            stored_password = user['password']
             return self.verify_password(stored_password=stored_password,
                                         provided_password=password)
         else:
@@ -43,11 +43,11 @@ class Manager:
 
     def insert_user(self, login, password, role):
         hashed_password = self.hash_password(password)
-        user = {"login": login, "password": hashed_password, "role": role}
+        user = {'login': login, 'password': hashed_password, 'role': role}
         self.db.users.insert_one(user)
 
     def get_user(self, login):
-        record = self.db.users.find_one({"login": login})
+        record = self.db.users.find_one({'login': login})
         return record
 
     def get_list_of_books(self):
@@ -55,26 +55,26 @@ class Manager:
         return books
 
     def get_books_by_title(self, title):
-        books = list(self.db.books.find({"title": {
+        books = list(self.db.books.find({'title': {
             '$regex': f'.*{title}.*',
             '$options': 'i',
         }}))
         return books
 
     def get_books_by_tag(self, tag):
-        subject_books = list(self.db.books.find({"subject_tag": {
+        subject_books = list(self.db.books.find({'subject_tag': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
         }}))
-        course_books1 = list(self.db.books.find({"course_tag1": {
+        course_books1 = list(self.db.books.find({'course_tag1': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
         }}))
-        course_books2 = list(self.db.books.find({"course_tag2": {
+        course_books2 = list(self.db.books.find({'course_tag2': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
         }}))
-        course_books3 = list(self.db.books.find({"course_tag3": {
+        course_books3 = list(self.db.books.find({'course_tag3': {
             '$regex': f'.*{tag}.*',
             '$options': 'i',
         }}))
@@ -82,7 +82,7 @@ class Manager:
         return books
 
     def insert_book(self, data):
-        """
+        '''
         Inserts the book ar article into the database.
 
         :param data: dict
@@ -98,7 +98,7 @@ class Manager:
                 'course_tag3', *optional
                 'approved',
                 }
-        """
+        '''
         self.db.books.insert_one(data)
 
     def get_requests(self):
