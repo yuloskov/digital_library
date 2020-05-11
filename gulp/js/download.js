@@ -75,6 +75,14 @@ $(document).ready(function() {
                 data: search_input.val()
             }, (result) => {
                 if (Object.keys(result).length !== 0){
+
+                    for (let arb in articles_buttons) {
+                        console.log(articles_buttons[arb])
+                        $(articles_buttons[arb]).fadeOut(150, () => {
+                            visible[arb] = false;
+                        });
+                    }
+
                     $(articles).detach();
                     articles = null;
                     number_of_articles = 0;
@@ -112,13 +120,20 @@ $(document).ready(function() {
         }
     });
 
-
     let category_choose = $(".choose_category");
     category_choose.on('click', (e) => {
         $.post('/choose_article', {
             data: $(e.target).text().replace(/\s/g, '')
         }, (result) => {
             if (Object.keys(result).length !== 0){
+
+                for (let arb in articles_buttons) {
+                    console.log(articles_buttons[arb])
+                    $(articles_buttons[arb]).fadeOut(150, () => {
+                        visible[arb] = false;
+                    });
+                }
+
                 $(articles).detach();
                 articles = null;
                 number_of_articles = 0;
@@ -163,6 +178,13 @@ $(document).ready(function() {
             data: $(e.target).text().replace(/\s/g, '')
         }, (result) => {
             if (Object.keys(result).length !== 0){
+
+                for (let arb in articles_buttons) {
+                    console.log(articles_buttons[arb])
+                    $(articles_buttons[arb]).fadeOut(150, () => {
+                        visible[arb] = false;
+                    });
+                }
 
                 $(articles).detach();
                 articles = null;
@@ -265,8 +287,6 @@ $(document).ready(function() {
                 $("#newTag_two").fadeOut(0);
             });
     });
-
-
 
     // Show Rules Page
     for (let b in buttons) {

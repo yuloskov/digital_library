@@ -199,6 +199,8 @@ select option:disabled {
   max-width: 100%;
   padding-top: 0.1em;
   padding-bottom: 0.1em;
+  max-height: 43vh;
+  overflow-y: scroll;
 }
 
 .main__sidebar__choose ul li {
