@@ -39,6 +39,6 @@
         "gulp-sass": "4.0.2",
         "gulp-uglify-es": "2.0.0",
         "merge-stream": "2.0.0",
-        "moment": "2.24.0"
+        "moment": "2.29.2"
     }
 }
